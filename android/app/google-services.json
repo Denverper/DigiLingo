@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1004039114611",
+    "project_id": "digital-literacy-f0owkn",
+    "storage_bucket": "digital-literacy-f0owkn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004039114611:android:139e674ba7c546c6b3ff06",
+        "android_client_info": {
+          "package_name": "com.flutterflow.fftrivia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004039114611-s9d0mltvebgfnts78r7hi93bdfurltvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLJdboavNmwLdhI3oRqmOeSlgpa7n4qpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004039114611-s9d0mltvebgfnts78r7hi93bdfurltvf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1004039114611-ur4sn8npihv1i1ioctmbo2gv7sp93msi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.fftrivia"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

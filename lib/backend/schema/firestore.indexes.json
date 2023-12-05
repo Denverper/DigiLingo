@@ -1,0 +1,32 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "LongTaskLessons",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "longTaskRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "number",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "ShortTaskLessons",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "shortTaskRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "number",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
