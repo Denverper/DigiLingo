@@ -3,16 +3,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'start_page_model.dart';
 export 'start_page_model.dart';
 
 class StartPageWidget extends StatefulWidget {
-  const StartPageWidget({Key? key}) : super(key: key);
+  const StartPageWidget({super.key});
 
   @override
   _StartPageWidgetState createState() => _StartPageWidgetState();
@@ -40,8 +37,8 @@ class _StartPageWidgetState extends State<StartPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 400.ms,
-          begin: Offset(3.0, 3.0),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(3.0, 3.0),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -60,8 +57,8 @@ class _StartPageWidgetState extends State<StartPageWidget>
           curve: Curves.bounceOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0.6, 0.6),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.6, 0.6),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -80,8 +77,8 @@ class _StartPageWidgetState extends State<StartPageWidget>
           curve: Curves.easeInOut,
           delay: 350.ms,
           duration: 400.ms,
-          begin: Offset(0.0, 30.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 30.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -100,8 +97,8 @@ class _StartPageWidgetState extends State<StartPageWidget>
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 400.ms,
-          begin: Offset(0.0, 30.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 30.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -155,30 +152,30 @@ class _StartPageWidgetState extends State<StartPageWidget>
                   ),
                   gradient: LinearGradient(
                     colors: [
-                      Color(0xC30C621E),
+                      const Color(0xC30C621E),
                       Colors.blue,
-                      Color(0xFF1616A2),
+                      const Color(0xFF1616A2),
                       FlutterFlowTheme.of(context).info
                     ],
-                    stops: [0.2, 1.0, 1.0, 1.0],
-                    begin: AlignmentDirectional(0.0, -1.0),
-                    end: AlignmentDirectional(0, 1.0),
+                    stops: const [0.2, 1.0, 1.0, 1.0],
+                    begin: const AlignmentDirectional(0.0, -1.0),
+                    end: const AlignmentDirectional(0, 1.0),
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 100.0,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color(0x00FFFFFF),
+                          const Color(0x00FFFFFF),
                           FlutterFlowTheme.of(context).secondaryBackground
                         ],
-                        stops: [0.0, 1.0],
-                        begin: AlignmentDirectional(0.0, -1.0),
-                        end: AlignmentDirectional(0, 1.0),
+                        stops: const [0.0, 1.0],
+                        begin: const AlignmentDirectional(0.0, -1.0),
+                        end: const AlignmentDirectional(0, 1.0),
                       ),
                     ),
                     child: Column(
@@ -186,7 +183,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Container(
                             width: 144.0,
                             height: 144.0,
@@ -195,7 +192,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                               shape: BoxShape.circle,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0.00, 0.00),
+                              alignment: const AlignmentDirectional(0.00, 0.00),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'ispvhmxm' /* [Logo Goes Here] */,
@@ -207,7 +204,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                               animationsMap['containerOnPageLoadAnimation2']!),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 44.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -218,7 +215,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                               animationsMap['textOnPageLoadAnimation1']!),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               44.0, 8.0, 44.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -237,16 +234,16 @@ class _StartPageWidgetState extends State<StartPageWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.00, 0.00),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 8.0, 16.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   context.goNamed(
                                     'Auth1',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                       ),
@@ -259,9 +256,9 @@ class _StartPageWidgetState extends State<StartPageWidget>
                                 options: FFButtonOptions(
                                   width: 230.0,
                                   height: 52.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,

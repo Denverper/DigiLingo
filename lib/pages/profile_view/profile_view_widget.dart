@@ -5,17 +5,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'profile_view_model.dart';
 export 'profile_view_model.dart';
 
 class ProfileViewWidget extends StatefulWidget {
-  const ProfileViewWidget({Key? key}) : super(key: key);
+  const ProfileViewWidget({super.key});
 
   @override
   _ProfileViewWidgetState createState() => _ProfileViewWidgetState();
@@ -36,8 +33,8 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 0.0),
-          end: Offset(115.0, 0.0),
+          begin: const Offset(0.0, 0.0),
+          end: const Offset(115.0, 0.0),
         ),
       ],
     ),
@@ -56,8 +53,8 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 60.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 60.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -105,11 +102,11 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: Color(0x00FFFFFF),
+            borderColor: const Color(0x00FFFFFF),
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            fillColor: Color(0x00FFFFFF),
+            fillColor: const Color(0x00FFFFFF),
             icon: Icon(
               Icons.arrow_back_ios,
               color: FlutterFlowTheme.of(context).info,
@@ -134,14 +131,14 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
             gradientDirection: GradientDirection.ltr,
             gradientType: GradientType.linear,
           ),
-          actions: [],
+          actions: const [],
           flexibleSpace: FlexibleSpaceBar(
             background: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
                 'https://images.unsplash.com/photo-1682688759350-050208b1211c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MXwxfHNlYXJjaHwxNXx8c2t5fGVufDB8fHx8MTcwMTI2NjM4NXww&ixlib=rb-4.0.3&q=80&w=1080',
                 fit: BoxFit.cover,
-                alignment: Alignment(0.00, 0.40),
+                alignment: const Alignment(0.00, 0.40),
               ),
             ),
           ),
@@ -153,7 +150,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
               child: AuthUserStreamWidget(
                 builder: (context) => Text(
                   currentUserDisplayName,
@@ -162,14 +159,14 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 16.0),
               child: Text(
                 currentUserEmail,
                 style: FlutterFlowTheme.of(context).labelMedium,
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
               child: Text(
                 FFLocalizations.of(context).getText(
                   '09y6mxfs' /* Your Account */,
@@ -178,13 +175,13 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 60.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 4.0,
                       color: Color(0x33000000),
@@ -196,7 +193,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -214,7 +211,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                           size: 24.0,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -225,7 +222,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.90, 0.00),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -240,13 +237,13 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 60.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 3.0,
                       color: Color(0x33000000),
@@ -258,7 +255,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -276,7 +273,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                           size: 24.0,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -287,7 +284,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.90, 0.00),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -302,7 +299,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 0.0, 0.0),
               child: Text(
                 FFLocalizations.of(context).getText(
                   'jrqxqs8g' /* App Settings */,
@@ -311,13 +308,13 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 60.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 3.0,
                       color: Color(0x33000000),
@@ -329,7 +326,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -340,13 +337,13 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: Text('In Progress'),
-                            content: Text('In Progress, Sorry.'),
+                            title: const Text('In Progress'),
+                            content: const Text('In Progress, Sorry.'),
                             actions: [
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
+                                child: const Text('Ok'),
                               ),
                             ],
                           );
@@ -362,7 +359,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                           size: 24.0,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -373,7 +370,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.90, 0.00),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -388,13 +385,13 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 60.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 3.0,
                       color: Color(0x33000000),
@@ -406,7 +403,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -417,13 +414,13 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: Text('In Progress'),
-                            content: Text('In Progress, Sorry.'),
+                            title: const Text('In Progress'),
+                            content: const Text('In Progress, Sorry.'),
                             actions: [
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
+                                child: const Text('Ok'),
                               ),
                             ],
                           );
@@ -439,7 +436,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                           size: 24.0,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -450,7 +447,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.90, 0.00),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -465,7 +462,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 60.0,
@@ -474,12 +471,12 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: Container(
                     width: 250.0,
                     height: 50.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF1F4F8),
+                      color: const Color(0xFFF1F4F8),
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(
                         width: 1.0,
@@ -487,7 +484,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -508,15 +505,15 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                   color: Theme.of(context).brightness ==
                                           Brightness.light
                                       ? Colors.white
-                                      : Color(0xFFF1F4F8),
+                                      : const Color(0xFFF1F4F8),
                                   borderRadius: BorderRadius.circular(10.0),
                                   border: Border.all(
                                     color: valueOrDefault<Color>(
                                       Theme.of(context).brightness ==
                                               Brightness.light
-                                          ? Color(0xFFE0E3E7)
-                                          : Color(0xFFF1F4F8),
-                                      Color(0xFFE0E3E7),
+                                          ? const Color(0xFFE0E3E7)
+                                          : const Color(0xFFF1F4F8),
+                                      const Color(0xFFE0E3E7),
                                     ),
                                     width: 1.0,
                                   ),
@@ -529,12 +526,12 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                       Icons.wb_sunny_rounded,
                                       color: Theme.of(context).brightness ==
                                               Brightness.light
-                                          ? Color(0xFF14181B)
-                                          : Color(0xFF57636C),
+                                          ? const Color(0xFF14181B)
+                                          : const Color(0xFF57636C),
                                       size: 16.0,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           4.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
@@ -547,8 +544,8 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                               color: Theme.of(context)
                                                           .brightness ==
                                                       Brightness.light
-                                                  ? Color(0xFF14181B)
-                                                  : Color(0xFF57636C),
+                                                  ? const Color(0xFF14181B)
+                                                  : const Color(0xFF57636C),
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -575,15 +572,15 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark
                                       ? Colors.white
-                                      : Color(0xFFF1F4F8),
+                                      : const Color(0xFFF1F4F8),
                                   borderRadius: BorderRadius.circular(10.0),
                                   border: Border.all(
                                     color: valueOrDefault<Color>(
                                       Theme.of(context).brightness ==
                                               Brightness.dark
-                                          ? Color(0xFFE0E3E7)
-                                          : Color(0xFFF1F4F8),
-                                      Color(0xFFF1F4F8),
+                                          ? const Color(0xFFE0E3E7)
+                                          : const Color(0xFFF1F4F8),
+                                      const Color(0xFFF1F4F8),
                                     ),
                                     width: 1.0,
                                   ),
@@ -596,12 +593,12 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                       Icons.nightlight_round,
                                       color: Theme.of(context).brightness ==
                                               Brightness.dark
-                                          ? Color(0xFF14181B)
-                                          : Color(0xFF57636C),
+                                          ? const Color(0xFF14181B)
+                                          : const Color(0xFF57636C),
                                       size: 16.0,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           4.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
@@ -614,8 +611,8 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                               color: Theme.of(context)
                                                           .brightness ==
                                                       Brightness.dark
-                                                  ? Color(0xFF14181B)
-                                                  : Color(0xFF57636C),
+                                                  ? const Color(0xFF14181B)
+                                                  : const Color(0xFF57636C),
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -637,9 +634,9 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.00, 0.00),
+              alignment: const AlignmentDirectional(0.00, 0.00),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     GoRouter.of(context).prepareAuthEvent();
@@ -654,9 +651,9 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                   options: FFButtonOptions(
                     width: 150.0,
                     height: 44.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Plus Jakarta Sans',
