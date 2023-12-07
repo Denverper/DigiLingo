@@ -311,15 +311,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
+              ? Container(
+                  color: Color(0xFFF6ECEC),
+                  child: Image.asset(
+                    'assets/images/1024.png',
+                    fit: BoxFit.contain,
                   ),
                 )
               : page;

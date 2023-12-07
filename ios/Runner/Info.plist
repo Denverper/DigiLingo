@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>DigitalLiteracy</string>
+	<string>DigiLingo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -34,7 +34,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.1004039114611-ur4sn8npihv1i1ioctmbo2gv7sp93msi</string>
+                <string>com.googleusercontent.apps.1004039114611-m2dg6lugval47eiokmunvs4hi7gq8g1j</string>
                 
             </array>
         </dict>
