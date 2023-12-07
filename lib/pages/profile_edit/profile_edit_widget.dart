@@ -7,17 +7,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'profile_edit_model.dart';
 export 'profile_edit_model.dart';
 
 class ProfileEditWidget extends StatefulWidget {
-  const ProfileEditWidget({Key? key}) : super(key: key);
+  const ProfileEditWidget({super.key});
 
   @override
   _ProfileEditWidgetState createState() => _ProfileEditWidgetState();
@@ -77,7 +74,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
           borderRadius: 30.0,
           borderWidth: 1.0,
           buttonSize: 60.0,
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: Colors.white,
             size: 30.0,
@@ -95,11 +92,11 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                 color: FlutterFlowTheme.of(context).primaryBackground,
                 fontSize: 22.0,
               ),
-          colors: [FlutterFlowTheme.of(context).warning, Color(0xFFF38024)],
+          colors: [FlutterFlowTheme.of(context).warning, const Color(0xFFF38024)],
           gradientDirection: GradientDirection.ltr,
           gradientType: GradientType.linear,
         ),
-        actions: [],
+        actions: const [],
         flexibleSpace: FlexibleSpaceBar(
           background: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
@@ -118,7 +115,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -206,12 +203,12 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                           width: MediaQuery.sizeOf(context).width * 0.8,
                           height: MediaQuery.sizeOf(context).width * 0.8,
                           clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: CachedNetworkImage(
-                            fadeInDuration: Duration(milliseconds: 500),
-                            fadeOutDuration: Duration(milliseconds: 500),
+                            fadeInDuration: const Duration(milliseconds: 500),
+                            fadeOutDuration: const Duration(milliseconds: 500),
                             imageUrl: valueOrDefault<String>(
                               currentUserPhoto,
                               'https://i.stack.imgur.com/l60Hf.png',
@@ -226,7 +223,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
               child: AuthUserStreamWidget(
                 builder: (context) => TextFormField(
                   controller: _model.yourNameController,
@@ -270,7 +267,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                     filled: true,
                     fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                     contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
                   validator:
@@ -279,7 +276,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
               child: AuthUserStreamWidget(
                 builder: (context) => TextFormField(
                   controller: _model.displayNameController,
@@ -323,7 +320,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                     filled: true,
                     fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                     contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
                   validator: _model.displayNameControllerValidator
@@ -332,9 +329,9 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.00, 0.05),
+              alignment: const AlignmentDirectional(0.00, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     await currentUserReference!.update(createUsersRecordData(
@@ -350,9 +347,9 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -360,7 +357,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                               color: Colors.white,
                             ),
                     elevation: 2.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

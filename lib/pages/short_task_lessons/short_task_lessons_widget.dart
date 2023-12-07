@@ -2,20 +2,16 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'short_task_lessons_model.dart';
 export 'short_task_lessons_model.dart';
 
 class ShortTaskLessonsWidget extends StatefulWidget {
   const ShortTaskLessonsWidget({
-    Key? key,
+    super.key,
     required this.shortTaskReference,
-  }) : super(key: key);
+  });
 
   final DocumentReference? shortTaskReference;
 
@@ -67,7 +63,7 @@ class _ShortTaskLessonsWidgetState extends State<ShortTaskLessonsWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -100,14 +96,14 @@ class _ShortTaskLessonsWidgetState extends State<ShortTaskLessonsWidget> {
               );
             },
           ),
-          actions: [],
+          actions: const [],
           flexibleSpace: FlexibleSpaceBar(
             background: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
                 'https://images.unsplash.com/photo-1436891620584-47fd0e565afb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxM3x8c2t5fGVufDB8fHx8MTcwMTQ1MjI5NHww&ixlib=rb-4.0.3&q=80&w=1080',
                 fit: BoxFit.cover,
-                alignment: Alignment(0.00, 0.24),
+                alignment: const Alignment(0.00, 0.24),
               ),
             ),
           ),
@@ -158,13 +154,13 @@ class _ShortTaskLessonsWidgetState extends State<ShortTaskLessonsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 0.0),
                               child: FlutterFlowIconButton(
                                 borderRadius: 20.0,
                                 borderWidth: 1.0,
                                 buttonSize: 40.0,
-                                disabledColor: Color(0xB10C621E),
+                                disabledColor: const Color(0xB10C621E),
                                 disabledIconColor:
                                     FlutterFlowTheme.of(context).info,
                                 icon: Icon(

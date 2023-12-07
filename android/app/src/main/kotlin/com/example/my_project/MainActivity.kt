@@ -1,4 +1,4 @@
-package com.flutterflow.fftrivia
+package com.DenverPersinger.digilingo
 
 import io.flutter.embedding.android.FlutterActivity
 
