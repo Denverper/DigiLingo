@@ -188,11 +188,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Continuar con Google',
       'fr': 'Continuer avec Google',
     },
-    'vtn4547l': {
-      'en': 'Continue with Apple',
-      'es': 'Continuar con Apple',
-      'fr': 'Continuer avec Apple',
-    },
     '57w7450i': {
       'en': 'Home',
       'es': 'Hogar',
