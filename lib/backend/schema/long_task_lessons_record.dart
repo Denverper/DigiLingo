@@ -6,6 +6,7 @@ import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class LongTaskLessonsRecord extends FirestoreRecord {
   LongTaskLessonsRecord._(
@@ -40,12 +41,24 @@ class LongTaskLessonsRecord extends FirestoreRecord {
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
+  // "description" field.
+  String? _description;
+  String get description => _description ?? '';
+  bool hasDescription() => _description != null;
+
+  // "length" field.
+  int? _length;
+  int get length => _length ?? 0;
+  bool hasLength() => _length != null;
+
   void _initializeFields() {
     _number = castToType<int>(snapshotData['number']);
     _longTaskRef = snapshotData['longTaskRef'] as DocumentReference?;
     _name = snapshotData['name'] as String?;
     _isCompleted = snapshotData['isCompleted'] as bool?;
     _image = snapshotData['image'] as String?;
+    _description = snapshotData['description'] as String?;
+    _length = castToType<int>(snapshotData['length']);
   }
 
   static CollectionReference get collection =>
@@ -88,6 +101,8 @@ Map<String, dynamic> createLongTaskLessonsRecordData({
   String? name,
   bool? isCompleted,
   String? image,
+  String? description,
+  int? length,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -96,6 +111,8 @@ Map<String, dynamic> createLongTaskLessonsRecordData({
       'name': name,
       'isCompleted': isCompleted,
       'image': image,
+      'description': description,
+      'length': length,
     }.withoutNulls,
   );
 
@@ -112,12 +129,21 @@ class LongTaskLessonsRecordDocumentEquality
         e1?.longTaskRef == e2?.longTaskRef &&
         e1?.name == e2?.name &&
         e1?.isCompleted == e2?.isCompleted &&
-        e1?.image == e2?.image;
+        e1?.image == e2?.image &&
+        e1?.description == e2?.description &&
+        e1?.length == e2?.length;
   }
 
   @override
-  int hash(LongTaskLessonsRecord? e) => const ListEquality()
-      .hash([e?.number, e?.longTaskRef, e?.name, e?.isCompleted, e?.image]);
+  int hash(LongTaskLessonsRecord? e) => const ListEquality().hash([
+        e?.number,
+        e?.longTaskRef,
+        e?.name,
+        e?.isCompleted,
+        e?.image,
+        e?.description,
+        e?.length
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is LongTaskLessonsRecord;

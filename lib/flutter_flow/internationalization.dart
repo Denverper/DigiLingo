@@ -270,7 +270,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Profil',
     },
     'ju8id7lp': {
-      'en': 'Home',
+      'en': 'Profile',
       'es': 'Hogar',
       'fr': 'Maison',
     },
@@ -293,7 +293,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': ',',
     },
     'muajapnp': {
-      'en': 'Lets \nJump\nIn.',
+      'en': 'Lets Jump In.',
       'es': 'vamos\nSaltar\nEn.',
       'fr': 'Permet\nSaut\nDans.',
     },
@@ -317,20 +317,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Adquiera algunas habilidades rápidas e impactantes.',
       'fr': 'Acquérez des compétences rapides et percutantes.',
     },
-    'bjl3szga': {
-      'en': 'Perfect Resume',
-      'es': 'Currículum perfecto',
-      'fr': 'CV parfait',
-    },
-    'ev8cneyy': {
-      'en': 'Show off your skills.',
-      'es': 'Demuestra tus habilidades.',
-      'fr': 'Montrez vos compétences.',
-    },
-    'm3zf3i04': {
-      'en': 'Start Here.',
-      'es': 'Empieza aqui.',
-      'fr': 'Commencer ici.',
+    '249w33am': {
+      'en': 'Home',
+      'es': '',
+      'fr': '',
     },
   },
   // changePass
@@ -381,6 +371,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // longTasksLessons
   {
+    '309a1wru': {
+      'en': 'Class Details',
+      'es': '',
+      'fr': '',
+    },
+    'w50hpbeq': {
+      'en': 'Content',
+      'es': '',
+      'fr': '',
+    },
+    'yn0lfsfw': {
+      'en': 'mins',
+      'es': '',
+      'fr': '',
+    },
+    'h8yw8jc7': {
+      'en': 'Favorite Class',
+      'es': '',
+      'fr': '',
+    },
     '7tcbeg1d': {
       'en': 'Home',
       'es': 'Hogar',
@@ -424,6 +434,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Home',
       'es': 'Hogar',
       'fr': 'Maison',
+    },
+  },
+  // MyCourses
+  {
+    'gap785ic': {
+      'en': 'Courses',
+      'es': '',
+      'fr': '',
+    },
+    '1tmjbj60': {
+      'en': 'Courses',
+      'es': '',
+      'fr': '',
+    },
+  },
+  // CourseCategory
+  {
+    '3pox7q1a': {
+      'en': 'Courses',
+      'es': '',
+      'fr': '',
+    },
+    'md9hhkw7': {
+      'en': 'Courses',
+      'es': '',
+      'fr': '',
     },
   },
   // Miscellaneous
@@ -485,6 +521,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': '',
     },
     '2f8n40gn': {
+      'en': '',
+      'es': '',
+      'fr': '',
+    },
+    'akzs59py': {
       'en': '',
       'es': '',
       'fr': '',

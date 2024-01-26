@@ -35,11 +35,17 @@ class ShortTasksRecord extends FirestoreRecord {
   String get buttonText => _buttonText ?? '';
   bool hasButtonText() => _buttonText != null;
 
+  // "category" field.
+  DocumentReference? _category;
+  DocumentReference? get category => _category;
+  bool hasCategory() => _category != null;
+
   void _initializeFields() {
     _taskName = snapshotData['taskName'] as String?;
     _image = snapshotData['image'] as String?;
     _description = snapshotData['description'] as String?;
     _buttonText = snapshotData['buttonText'] as String?;
+    _category = snapshotData['category'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -81,6 +87,7 @@ Map<String, dynamic> createShortTasksRecordData({
   String? image,
   String? description,
   String? buttonText,
+  DocumentReference? category,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -88,6 +95,7 @@ Map<String, dynamic> createShortTasksRecordData({
       'image': image,
       'description': description,
       'buttonText': buttonText,
+      'category': category,
     }.withoutNulls,
   );
 
@@ -102,12 +110,13 @@ class ShortTasksRecordDocumentEquality implements Equality<ShortTasksRecord> {
     return e1?.taskName == e2?.taskName &&
         e1?.image == e2?.image &&
         e1?.description == e2?.description &&
-        e1?.buttonText == e2?.buttonText;
+        e1?.buttonText == e2?.buttonText &&
+        e1?.category == e2?.category;
   }
 
   @override
-  int hash(ShortTasksRecord? e) => const ListEquality()
-      .hash([e?.taskName, e?.image, e?.description, e?.buttonText]);
+  int hash(ShortTasksRecord? e) => const ListEquality().hash(
+      [e?.taskName, e?.image, e?.description, e?.buttonText, e?.category]);
 
   @override
   bool isValidKey(Object? o) => o is ShortTasksRecord;

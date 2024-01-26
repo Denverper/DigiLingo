@@ -16,7 +16,7 @@ class Auth1Widget extends StatefulWidget {
   const Auth1Widget({super.key});
 
   @override
-  _Auth1WidgetState createState() => _Auth1WidgetState();
+  State<Auth1Widget> createState() => _Auth1WidgetState();
 }
 
 class _Auth1WidgetState extends State<Auth1Widget>
@@ -146,7 +146,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: const AlignmentDirectional(0.00, -1.00),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -167,9 +167,9 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                 topRight: Radius.circular(0.0),
                               ),
                             ),
-                            alignment: const AlignmentDirectional(-1.00, 0.00),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -201,8 +201,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                4.0, 4.0, 4.0, 4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -292,10 +291,9 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                   true,
                                 ))
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 12.0, 12.0, 12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -385,9 +383,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                               context)
                                                           .secondaryBackground,
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(24.0, 24.0,
-                                                              24.0, 24.0),
+                                                      const EdgeInsets.all(24.0),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -484,9 +480,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                               context)
                                                           .secondaryBackground,
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(24.0, 24.0,
-                                                              24.0, 24.0),
+                                                      const EdgeInsets.all(24.0),
                                                   suffixIcon: InkWell(
                                                     onTap: () => setState(
                                                       () => _model
@@ -520,8 +514,8 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -588,8 +582,8 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -640,7 +634,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                             children: [
                                               Align(
                                                 alignment: const AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 0.0, 16.0,
@@ -659,7 +653,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                               ),
                                               Align(
                                                 alignment: const AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -778,10 +772,9 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                   ),
                                 if (_model.create == true)
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 12.0, 12.0, 12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -868,9 +861,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                               context)
                                                           .secondaryBackground,
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(24.0, 24.0,
-                                                              24.0, 24.0),
+                                                      const EdgeInsets.all(24.0),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -964,9 +955,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                               context)
                                                           .secondaryBackground,
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(24.0, 24.0,
-                                                              24.0, 24.0),
+                                                      const EdgeInsets.all(24.0),
                                                   suffixIcon: InkWell(
                                                     onTap: () => setState(
                                                       () => _model
@@ -1080,9 +1069,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                               context)
                                                           .secondaryBackground,
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(24.0, 24.0,
-                                                              24.0, 24.0),
+                                                      const EdgeInsets.all(24.0),
                                                   suffixIcon: InkWell(
                                                     onTap: () => setState(
                                                       () => _model
@@ -1117,8 +1104,8 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -1207,7 +1194,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                             children: [
                                               Align(
                                                 alignment: const AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 0.0, 16.0,
@@ -1226,7 +1213,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                               ),
                                               Align(
                                                 alignment: const AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -1360,8 +1347,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                 Expanded(
                   flex: 6,
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Container(
                       width: 100.0,
                       height: double.infinity,

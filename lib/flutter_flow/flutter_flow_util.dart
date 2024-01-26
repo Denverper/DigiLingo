@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
@@ -158,6 +159,27 @@ extension DateTimeComparisonOperators on DateTime {
   bool operator >=(DateTime other) => this > other || isAtSameMomentAs(other);
 }
 
+T? castToType<T>(dynamic value) {
+  if (value == null) {
+    return null;
+  }
+  switch (T) {
+    case double:
+      // Doubles may be stored as ints in some cases.
+      return value.toDouble() as T;
+    case int:
+      // Likewise, ints may be stored as doubles. If this is the case
+      // (i.e. no decimal value), return the value as an int.
+      if (value is num && value.toInt() == value) {
+        return value.toInt() as T;
+      }
+      break;
+    default:
+      break;
+  }
+  return value as T;
+}
+
 dynamic getJsonField(
   dynamic response,
   String jsonPath, [
@@ -171,7 +193,12 @@ dynamic getJsonField(
     return field.map((f) => f.value).toList();
   }
   final value = field.first.value;
-  return isForList && value is! Iterable ? [value] : value;
+  if (isForList) {
+    return value is! Iterable
+        ? [value]
+        : (value is List ? value : value.toList());
+  }
+  return value;
 }
 
 Rect? getWidgetBoundingBox(BuildContext context) {
@@ -283,6 +310,12 @@ extension FFStringExt on String {
 
 extension ListFilterExt<T> on Iterable<T?> {
   List<T> get withoutNulls => where((s) => s != null).map((e) => e!).toList();
+}
+
+extension MapListContainsExt on List<dynamic> {
+  bool containsMap(dynamic map) => map is Map
+      ? any((e) => e is Map && const DeepCollectionEquality().equals(e, map))
+      : contains(map);
 }
 
 extension ListDivideExt<T extends Widget> on Iterable<T> {

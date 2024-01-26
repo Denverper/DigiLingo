@@ -9,3 +9,6 @@ export '/pages/long_tasks_lessons/long_tasks_lessons_widget.dart'
 export '/pages/short_task_lessons/short_task_lessons_widget.dart'
     show ShortTaskLessonsWidget;
 export '/pages/start_page/start_page_widget.dart' show StartPageWidget;
+export '/pages/my_courses/my_courses_widget.dart' show MyCoursesWidget;
+export '/pages/course_category/course_category_widget.dart'
+    show CourseCategoryWidget;

@@ -12,7 +12,7 @@ class StartPageWidget extends StatefulWidget {
   const StartPageWidget({super.key});
 
   @override
-  _StartPageWidgetState createState() => _StartPageWidgetState();
+  State<StartPageWidget> createState() => _StartPageWidgetState();
 }
 
 class _StartPageWidgetState extends State<StartPageWidget>
@@ -183,7 +183,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Container(
                             width: 144.0,
                             height: 144.0,
@@ -192,7 +192,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                               shape: BoxShape.circle,
                             ),
                             child: Align(
-                              alignment: const AlignmentDirectional(0.00, 0.00),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'ispvhmxm' /* [Logo Goes Here] */,
@@ -234,7 +234,7 @@ class _StartPageWidgetState extends State<StartPageWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 8.0, 16.0),

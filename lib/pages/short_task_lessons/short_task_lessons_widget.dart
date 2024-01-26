@@ -1,9 +1,9 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'short_task_lessons_model.dart';
 export 'short_task_lessons_model.dart';
 
@@ -16,7 +16,7 @@ class ShortTaskLessonsWidget extends StatefulWidget {
   final DocumentReference? shortTaskReference;
 
   @override
-  _ShortTaskLessonsWidgetState createState() => _ShortTaskLessonsWidgetState();
+  State<ShortTaskLessonsWidget> createState() => _ShortTaskLessonsWidgetState();
 }
 
 class _ShortTaskLessonsWidgetState extends State<ShortTaskLessonsWidget> {
@@ -55,137 +55,123 @@ class _ShortTaskLessonsWidgetState extends State<ShortTaskLessonsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
-          title: StreamBuilder<ShortTasksRecord>(
-            stream: ShortTasksRecord.getDocument(widget.shortTaskReference!),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
-                  ),
-                );
-              }
-              final textShortTasksRecord = snapshot.data!;
-              return Text(
-                textShortTasksRecord.taskName,
-                style: FlutterFlowTheme.of(context).titleMedium,
-              );
-            },
-          ),
-          actions: const [],
-          flexibleSpace: FlexibleSpaceBar(
-            background: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                'https://images.unsplash.com/photo-1436891620584-47fd0e565afb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxM3x8c2t5fGVufDB8fHx8MTcwMTQ1MjI5NHww&ixlib=rb-4.0.3&q=80&w=1080',
-                fit: BoxFit.cover,
-                alignment: const Alignment(0.00, 0.24),
-              ),
-            ),
-          ),
-          centerTitle: true,
-          elevation: 2.0,
-        ),
         body: SafeArea(
           top: true,
-          child: Row(
+          child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: StreamBuilder<List<ShortTaskLessonsRecord>>(
-                  stream: queryShortTaskLessonsRecord(
-                    queryBuilder: (shortTaskLessonsRecord) =>
-                        shortTaskLessonsRecord
-                            .where(
-                              'shortTaskRef',
-                              isEqualTo: widget.shortTaskReference,
-                            )
-                            .orderBy('number'),
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    List<ShortTaskLessonsRecord>
-                        listViewShortTaskLessonsRecordList = snapshot.data!;
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.vertical,
-                      itemCount: listViewShortTaskLessonsRecordList.length,
-                      itemBuilder: (context, listViewIndex) {
-                        final listViewShortTaskLessonsRecord =
-                            listViewShortTaskLessonsRecordList[listViewIndex];
-                        return Column(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                disabledColor: const Color(0xB10C621E),
-                                disabledIconColor:
-                                    FlutterFlowTheme.of(context).info,
-                                icon: Icon(
-                                  Icons.adjust,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed:
-                                    listViewShortTaskLessonsRecord.isCompleted
-                                        ? null
-                                        : () {
-                                            print('IconButton pressed ...');
-                                          },
+                                  0.0, 30.0, 0.0, 0.0),
+                              child: StreamBuilder<ShortTasksRecord>(
+                                stream: ShortTasksRecord.getDocument(
+                                    widget.shortTaskReference!),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: SpinKitFadingCube(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 50.0,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  final textShortTasksRecord = snapshot.data!;
+                                  return Text(
+                                    textShortTasksRecord.taskName,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineMedium,
+                                  );
+                                },
                               ),
                             ),
-                            Text(
-                              listViewShortTaskLessonsRecord.name,
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 0.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: 230.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 12.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 5.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: StreamBuilder<ShortTasksRecord>(
+                                    stream: ShortTasksRecord.getDocument(
+                                        widget.shortTaskReference!),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: SpinKitFadingCube(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 50.0,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final imageShortTasksRecord =
+                                          snapshot.data!;
+                                      return Hero(
+                                        tag: imageShortTasksRecord.image,
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: Image.network(
+                                            imageShortTasksRecord.image,
+                                            width: double.infinity,
+                                            height: 230.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
-                        );
-                      },
-                    );
-                  },
+                        ),
+                      ),
+                      Divider(
+                        height: 12.0,
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

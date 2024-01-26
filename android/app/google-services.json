@@ -49,6 +49,51 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004039114611:android:d3603376aa694f58b3ff06",
+        "android_client_info": {
+          "package_name": "com.DenverPersinger.digilingoTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004039114611-ehms17pj19u1lpib0kcm4cjll0ij6e63.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.DenverPersinger.digilingoTest",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1004039114611-s9d0mltvebgfnts78r7hi93bdfurltvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLJdboavNmwLdhI3oRqmOeSlgpa7n4qpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004039114611-s9d0mltvebgfnts78r7hi93bdfurltvf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1004039114611-m2dg6lugval47eiokmunvs4hi7gq8g1j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.DenverPersinger.digilingo",
+                "app_store_id": "6473855060"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

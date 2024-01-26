@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -15,7 +14,7 @@ class ProfileViewWidget extends StatefulWidget {
   const ProfileViewWidget({super.key});
 
   @override
-  _ProfileViewWidgetState createState() => _ProfileViewWidgetState();
+  State<ProfileViewWidget> createState() => _ProfileViewWidgetState();
 }
 
 class _ProfileViewWidgetState extends State<ProfileViewWidget>
@@ -99,37 +98,25 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: const Color(0x00FFFFFF),
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            fillColor: const Color(0x00FFFFFF),
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: FlutterFlowTheme.of(context).info,
-              size: 20.0,
+          title: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+            child: GradientText(
+              FFLocalizations.of(context).getText(
+                '26hts0th' /* Profile */,
+              ),
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Urbanist',
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+              colors: [
+                FlutterFlowTheme.of(context).primary,
+                FlutterFlowTheme.of(context).secondary
+              ],
+              gradientDirection: GradientDirection.ltr,
+              gradientType: GradientType.linear,
             ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
-          title: GradientText(
-            FFLocalizations.of(context).getText(
-              '26hts0th' /* Profile */,
-            ),
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Urbanist',
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-            colors: [
-              FlutterFlowTheme.of(context).primary,
-              FlutterFlowTheme.of(context).secondary
-            ],
-            gradientDirection: GradientDirection.ltr,
-            gradientType: GradientType.linear,
           ),
           actions: const [],
           flexibleSpace: FlexibleSpaceBar(
@@ -138,7 +125,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               child: Image.network(
                 'https://images.unsplash.com/photo-1682688759350-050208b1211c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MXwxfHNlYXJjaHwxNXx8c2t5fGVufDB8fHx8MTcwMTI2NjM4NXww&ixlib=rb-4.0.3&q=80&w=1080',
                 fit: BoxFit.cover,
-                alignment: const Alignment(0.00, 0.40),
+                alignment: const Alignment(0.0, 0.4),
               ),
             ),
           ),
@@ -192,8 +179,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -222,7 +208,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -254,8 +240,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -284,7 +269,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -325,8 +310,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -370,7 +354,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -402,8 +386,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -447,7 +430,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -483,8 +466,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                       ),
                     ),
                     child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -634,7 +616,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.00, 0.00),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: FFButtonWidget(

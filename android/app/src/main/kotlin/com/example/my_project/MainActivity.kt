@@ -1,4 +1,4 @@
-package com.DenverPersinger.digilingo
+package com.DenverPersinger.digilingoTest
 
 import io.flutter.embedding.android.FlutterActivity
 

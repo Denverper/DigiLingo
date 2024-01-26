@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -71,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomePageWidget() : const StartPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const StartPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomePageWidget() : const StartPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const StartPageWidget(),
         ),
         FFRoute(
           name: 'Auth1',
@@ -92,12 +93,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'profileView',
           path: '/profileView',
-          builder: (context, params) => const ProfileViewWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'profileView')
+              : const ProfileViewWidget(),
         ),
         FFRoute(
           name: 'homePage',
           path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'homePage')
+              : const HomePageWidget(),
         ),
         FFRoute(
           name: 'changePass',
@@ -115,15 +120,39 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'shortTaskLessons',
           path: '/shortTaskLessons',
-          builder: (context, params) => ShortTaskLessonsWidget(
-            shortTaskReference: params.getParam('shortTaskReference',
-                ParamType.DocumentReference, false, ['ShortTasks']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: ShortTaskLessonsWidget(
+              shortTaskReference: params.getParam('shortTaskReference',
+                  ParamType.DocumentReference, false, ['ShortTasks']),
+            ),
           ),
         ),
         FFRoute(
           name: 'startPage',
           path: '/startPage',
           builder: (context, params) => const StartPageWidget(),
+        ),
+        FFRoute(
+          name: 'MyCourses',
+          path: '/myCourses',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'MyCourses')
+              : MyCoursesWidget(
+                  categoryRef: params.getParam('categoryRef',
+                      ParamType.DocumentReference, false, ['categories']),
+                ),
+        ),
+        FFRoute(
+          name: 'CourseCategory',
+          path: '/courseCategory',
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CourseCategoryWidget(
+              categoryRef: params.getParam('categoryRef',
+                  ParamType.DocumentReference, false, ['categories']),
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -318,13 +347,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },

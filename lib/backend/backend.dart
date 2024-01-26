@@ -10,6 +10,8 @@ import 'schema/long_tasks_record.dart';
 import 'schema/short_tasks_record.dart';
 import 'schema/long_task_lessons_record.dart';
 import 'schema/short_task_lessons_record.dart';
+import 'schema/short_lessons_sections_record.dart';
+import 'schema/categories_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,6 +24,8 @@ export 'schema/long_tasks_record.dart';
 export 'schema/short_tasks_record.dart';
 export 'schema/long_task_lessons_record.dart';
 export 'schema/short_task_lessons_record.dart';
+export 'schema/short_lessons_sections_record.dart';
+export 'schema/categories_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -203,6 +207,80 @@ Future<List<ShortTaskLessonsRecord>> queryShortTaskLessonsRecordOnce({
     queryCollectionOnce(
       ShortTaskLessonsRecord.collection,
       ShortTaskLessonsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ShortLessonsSectionsRecords (as a Stream and as a Future).
+Future<int> queryShortLessonsSectionsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ShortLessonsSectionsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ShortLessonsSectionsRecord>> queryShortLessonsSectionsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ShortLessonsSectionsRecord.collection,
+      ShortLessonsSectionsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ShortLessonsSectionsRecord>> queryShortLessonsSectionsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ShortLessonsSectionsRecord.collection,
+      ShortLessonsSectionsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query CategoriesRecords (as a Stream and as a Future).
+Future<int> queryCategoriesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CategoriesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<CategoriesRecord>> queryCategoriesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CategoriesRecord.collection,
+      CategoriesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CategoriesRecord>> queryCategoriesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CategoriesRecord.collection,
+      CategoriesRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

@@ -17,7 +17,7 @@ class ProfileEditWidget extends StatefulWidget {
   const ProfileEditWidget({super.key});
 
   @override
-  _ProfileEditWidgetState createState() => _ProfileEditWidgetState();
+  State<ProfileEditWidget> createState() => _ProfileEditWidgetState();
 }
 
 class _ProfileEditWidgetState extends State<ProfileEditWidget> {
@@ -67,7 +67,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primary,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -329,7 +329,7 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.00, 0.05),
+              alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: FFButtonWidget(

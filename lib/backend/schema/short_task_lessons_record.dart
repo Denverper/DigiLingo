@@ -6,6 +6,7 @@ import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class ShortTaskLessonsRecord extends FirestoreRecord {
   ShortTaskLessonsRecord._(
@@ -40,12 +41,18 @@ class ShortTaskLessonsRecord extends FirestoreRecord {
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
+  // "description" field.
+  String? _description;
+  String get description => _description ?? '';
+  bool hasDescription() => _description != null;
+
   void _initializeFields() {
     _number = castToType<int>(snapshotData['number']);
     _name = snapshotData['name'] as String?;
     _shortTaskRef = snapshotData['shortTaskRef'] as DocumentReference?;
     _isCompleted = snapshotData['isCompleted'] as bool?;
     _image = snapshotData['image'] as String?;
+    _description = snapshotData['description'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -89,6 +96,7 @@ Map<String, dynamic> createShortTaskLessonsRecordData({
   DocumentReference? shortTaskRef,
   bool? isCompleted,
   String? image,
+  String? description,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,6 +105,7 @@ Map<String, dynamic> createShortTaskLessonsRecordData({
       'shortTaskRef': shortTaskRef,
       'isCompleted': isCompleted,
       'image': image,
+      'description': description,
     }.withoutNulls,
   );
 
@@ -113,12 +122,19 @@ class ShortTaskLessonsRecordDocumentEquality
         e1?.name == e2?.name &&
         e1?.shortTaskRef == e2?.shortTaskRef &&
         e1?.isCompleted == e2?.isCompleted &&
-        e1?.image == e2?.image;
+        e1?.image == e2?.image &&
+        e1?.description == e2?.description;
   }
 
   @override
-  int hash(ShortTaskLessonsRecord? e) => const ListEquality()
-      .hash([e?.number, e?.name, e?.shortTaskRef, e?.isCompleted, e?.image]);
+  int hash(ShortTaskLessonsRecord? e) => const ListEquality().hash([
+        e?.number,
+        e?.name,
+        e?.shortTaskRef,
+        e?.isCompleted,
+        e?.image,
+        e?.description
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ShortTaskLessonsRecord;
