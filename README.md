@@ -1,4 +1,5 @@
-# Digital Literacy Project for Denver Public Schools (DPS)
+# Digilingo 
+Digital Literacy Project for Denver Public Schools (DPS)
 
 ## Getting Started
 
