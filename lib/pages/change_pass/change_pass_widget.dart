@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'change_pass_model.dart';
 export 'change_pass_model.dart';
 
@@ -27,6 +26,8 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
 
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -38,15 +39,6 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -76,6 +68,7 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Urbanist',
                   fontSize: 16.0,
+                  letterSpacing: 0.0,
                 ),
           ),
         ),
@@ -130,7 +123,12 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
                             FFLocalizations.of(context).getText(
                               'vpzdtucc' /* Back */,
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                       ],
@@ -143,7 +141,10 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
                   FFLocalizations.of(context).getText(
                     'hda23d0h' /* Forgot Password */,
                   ),
-                  style: FlutterFlowTheme.of(context).headlineMedium,
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Urbanist',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
               Padding(
@@ -152,7 +153,10 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
                   FFLocalizations.of(context).getText(
                     'ndwgikmo' /* We will send you an email with... */,
                   ),
-                  style: FlutterFlowTheme.of(context).labelMedium,
+                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Plus Jakarta Sans',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
               Padding(
@@ -168,11 +172,19 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
                       labelText: FFLocalizations.of(context).getText(
                         'rca44dkj' /* Your email address... */,
                       ),
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Plus Jakarta Sans',
+                                letterSpacing: 0.0,
+                              ),
                       hintText: FFLocalizations.of(context).getText(
                         'f5iihyk7' /* Enter your email... */,
                       ),
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Plus Jakarta Sans',
+                                letterSpacing: 0.0,
+                              ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).alternate,
@@ -207,8 +219,12 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
                       contentPadding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Plus Jakarta Sans',
+                          letterSpacing: 0.0,
+                        ),
                     maxLines: null,
+                    minLines: null,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: FlutterFlowTheme.of(context).primary,
                     validator: _model.emailAddressControllerValidator
@@ -248,7 +264,11 @@ class _ChangePassWidgetState extends State<ChangePassWidget> {
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
-                      textStyle: FlutterFlowTheme.of(context).titleSmall,
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Plus Jakarta Sans',
+                                letterSpacing: 0.0,
+                              ),
                       elevation: 3.0,
                       borderSide: const BorderSide(
                         color: Colors.transparent,

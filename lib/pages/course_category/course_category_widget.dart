@@ -1,11 +1,10 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'course_category_model.dart';
@@ -81,6 +80,8 @@ class _CourseCategoryWidgetState extends State<CourseCategoryWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -92,15 +93,6 @@ class _CourseCategoryWidgetState extends State<CourseCategoryWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -162,7 +154,12 @@ class _CourseCategoryWidgetState extends State<CourseCategoryWidget>
                           final textCategoriesRecord = snapshot.data!;
                           return Text(
                             textCategoriesRecord.categoryName,
-                            style: FlutterFlowTheme.of(context).headlineMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  fontFamily: 'Urbanist',
+                                  letterSpacing: 0.0,
+                                ),
                           );
                         },
                       ),
@@ -174,337 +171,343 @@ class _CourseCategoryWidgetState extends State<CourseCategoryWidget>
                         FFLocalizations.of(context).getText(
                           '3pox7q1a' /* Courses */,
                         ),
-                        style: FlutterFlowTheme.of(context).headlineMedium,
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
+                              fontFamily: 'Urbanist',
+                              letterSpacing: 0.0,
+                            ),
                       ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          constraints: const BoxConstraints(
-                            maxWidth: 570.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          child: Container(
+                            width: double.infinity,
+                            constraints: const BoxConstraints(
+                              maxWidth: 570.0,
                             ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 48.0),
-                            child: StreamBuilder<List<ShortTasksRecord>>(
-                              stream: queryShortTasksRecord(
-                                queryBuilder: (shortTasksRecord) =>
-                                    shortTasksRecord.where(
-                                  'category',
-                                  isEqualTo: widget.categoryRef,
-                                ),
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 2.0,
                               ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: SpinKitFadingCube(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 50.0,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 48.0),
+                                  child: StreamBuilder<List<ShortTasksRecord>>(
+                                    stream: queryShortTasksRecord(
+                                      queryBuilder: (shortTasksRecord) =>
+                                          shortTasksRecord.where(
+                                        'categories',
+                                        arrayContains: widget.categoryRef,
                                       ),
                                     ),
-                                  );
-                                }
-                                List<ShortTasksRecord>
-                                    listViewShortTasksRecordList =
-                                    snapshot.data!;
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  primary: false,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount:
-                                      listViewShortTasksRecordList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewShortTasksRecord =
-                                        listViewShortTasksRecordList[
-                                            listViewIndex];
-                                    return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 16.0, 8.0),
-                                      child: Container(
-                                        width: 270.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 8.0,
-                                              color: Color(0x230F1113),
-                                              offset: Offset(0.0, 4.0),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            width: 1.0,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: SpinKitFadingCube(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 50.0,
+                                            ),
                                           ),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.pushNamed(
-                                                  'shortTaskLessons',
-                                                  queryParameters: {
-                                                    'shortTaskReference':
-                                                        serializeParam(
-                                                      listViewShortTasksRecord
-                                                          .reference,
-                                                      ParamType
-                                                          .DocumentReference,
+                                        );
+                                      }
+                                      List<ShortTasksRecord>
+                                          listViewShortTasksRecordList =
+                                          snapshot.data!;
+                                      return ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount:
+                                            listViewShortTasksRecordList.length,
+                                        itemBuilder: (context, listViewIndex) {
+                                          final listViewShortTasksRecord =
+                                              listViewShortTasksRecordList[
+                                                  listViewIndex];
+                                          return Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            child: Container(
+                                              width: 270.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    blurRadius: 8.0,
+                                                    color: Color(0x230F1113),
+                                                    offset: Offset(
+                                                      0.0,
+                                                      4.0,
                                                     ),
-                                                  }.withoutNulls,
-                                                );
-                                              },
-                                              child: Hero(
-                                                tag: listViewShortTasksRecord
-                                                    .image,
-                                                transitionOnUserGestures: true,
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(0.0),
-                                                    bottomRight:
-                                                        Radius.circular(0.0),
-                                                    topLeft:
-                                                        Radius.circular(12.0),
-                                                    topRight:
-                                                        Radius.circular(12.0),
-                                                  ),
-                                                  child: Image.network(
-                                                    listViewShortTasksRecord
-                                                        .image,
-                                                    width: double.infinity,
-                                                    height: 200.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  width: 1.0,
                                                 ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 12.0, 16.0, 12.0),
-                                              child: Row(
+                                              child: Column(
                                                 mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
                                                 children: [
-                                                  Expanded(
-                                                    child: Column(
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'shortTaskLessons',
+                                                        queryParameters: {
+                                                          'shortTaskReference':
+                                                              serializeParam(
+                                                            listViewShortTasksRecord
+                                                                .reference,
+                                                            ParamType
+                                                                .DocumentReference,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child: Hero(
+                                                      tag:
+                                                          listViewShortTasksRecord
+                                                              .image,
+                                                      transitionOnUserGestures:
+                                                          true,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            const BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  12.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  12.0),
+                                                        ),
+                                                        child: Image.network(
+                                                          listViewShortTasksRecord
+                                                              .image,
+                                                          width:
+                                                              double.infinity,
+                                                          height: 200.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                    child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
-                                                        Text(
-                                                          listViewShortTasksRecord
-                                                              .taskName,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyLarge,
+                                                        Expanded(
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                listViewShortTasksRecord
+                                                                    .taskName,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                              Text(
+                                                                listViewShortTasksRecord
+                                                                    .description,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                        Text(
-                                                          listViewShortTasksRecord
-                                                              .description,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelSmall,
-                                                        ),
+                                                        if (listViewShortTasksRecord
+                                                            .usersCompleted
+                                                            .contains(
+                                                                currentUserReference))
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .check_circle,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 35.0,
+                                                            ),
+                                                          ),
                                                       ],
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).animateOnPageLoad(animationsMap[
-                                    'listViewOnPageLoadAnimation1']!);
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          constraints: const BoxConstraints(
-                            maxWidth: 570.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 48.0),
-                            child: StreamBuilder<List<LongTasksRecord>>(
-                              stream: queryLongTasksRecord(
-                                queryBuilder: (longTasksRecord) =>
-                                    longTasksRecord.where(
-                                  'category',
-                                  isEqualTo: widget.categoryRef,
+                                          );
+                                        },
+                                      ).animateOnPageLoad(animationsMap[
+                                          'listViewOnPageLoadAnimation1']!);
+                                    },
+                                  ),
                                 ),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: SpinKitFadingCube(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 50.0,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 48.0),
+                                  child: StreamBuilder<List<LongTasksRecord>>(
+                                    stream: queryLongTasksRecord(
+                                      queryBuilder: (longTasksRecord) =>
+                                          longTasksRecord.where(
+                                        'categories',
+                                        arrayContains: widget.categoryRef,
                                       ),
                                     ),
-                                  );
-                                }
-                                List<LongTasksRecord>
-                                    listViewLongTasksRecordList =
-                                    snapshot.data!;
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  primary: false,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewLongTasksRecordList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewLongTasksRecord =
-                                        listViewLongTasksRecordList[
-                                            listViewIndex];
-                                    return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 16.0, 8.0),
-                                      child: Container(
-                                        width: 270.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 8.0,
-                                              color: Color(0x230F1113),
-                                              offset: Offset(0.0, 4.0),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            width: 1.0,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: SpinKitFadingCube(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 50.0,
+                                            ),
                                           ),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Hero(
-                                              tag:
-                                                  listViewLongTasksRecord.image,
-                                              transitionOnUserGestures: true,
-                                              child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(0.0),
-                                                  topLeft:
-                                                      Radius.circular(12.0),
-                                                  topRight:
-                                                      Radius.circular(12.0),
-                                                ),
-                                                child: Image.network(
-                                                  listViewLongTasksRecord.image,
-                                                  width: double.infinity,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
+                                        );
+                                      }
+                                      List<LongTasksRecord>
+                                          listViewLongTasksRecordList =
+                                          snapshot.data!;
+                                      return ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount:
+                                            listViewLongTasksRecordList.length,
+                                        itemBuilder: (context, listViewIndex) {
+                                          final listViewLongTasksRecord =
+                                              listViewLongTasksRecordList[
+                                                  listViewIndex];
+                                          return Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            child: Container(
+                                              width: 270.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    blurRadius: 8.0,
+                                                    color: Color(0x230F1113),
+                                                    offset: Offset(
+                                                      0.0,
+                                                      4.0,
+                                                    ),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  width: 1.0,
                                                 ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 12.0, 16.0, 12.0),
-                                              child: Row(
+                                              child: Column(
                                                 mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
                                                 children: [
-                                                  Expanded(
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          listViewLongTasksRecord
-                                                              .taskName,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyLarge,
-                                                        ),
-                                                        Text(
-                                                          listViewLongTasksRecord
-                                                              .description,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelSmall,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
                                                       context.pushNamed(
                                                         'longTasksLessons',
                                                         queryParameters: {
@@ -518,65 +521,112 @@ class _CourseCategoryWidgetState extends State<CourseCategoryWidget>
                                                         }.withoutNulls,
                                                       );
                                                     },
-                                                    text:
-                                                        listViewLongTasksRecord
-                                                            .buttonText,
-                                                    options: FFButtonOptions(
-                                                      width: 140.0,
-                                                      height: 45.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
+                                                    child: Hero(
+                                                      tag:
+                                                          listViewLongTasksRecord
+                                                              .image,
+                                                      transitionOnUserGestures:
+                                                          true,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            const BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
                                                                   0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
+                                                          bottomRight:
+                                                              Radius.circular(
                                                                   0.0),
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .backgroundComponents,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall,
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  12.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  12.0),
+                                                        ),
+                                                        child: Image.network(
+                                                          listViewLongTasksRecord
+                                                              .image,
+                                                          width:
+                                                              double.infinity,
+                                                          height: 200.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                listViewLongTasksRecord
+                                                                    .taskName,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                              Text(
+                                                                listViewLongTasksRecord
+                                                                    .description,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).animateOnPageLoad(animationsMap[
-                                    'listViewOnPageLoadAnimation2']!);
-                              },
+                                          );
+                                        },
+                                      ).animateOnPageLoad(animationsMap[
+                                          'listViewOnPageLoadAnimation2']!);
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                    ].divide(const SizedBox(height: 12.0)),
+                      ].divide(const SizedBox(height: 12.0)),
+                    ),
                   ),
-                ),
-                const Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [],
                 ),
               ],
             ),

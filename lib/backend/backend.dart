@@ -9,9 +9,13 @@ import 'schema/users_record.dart';
 import 'schema/long_tasks_record.dart';
 import 'schema/short_tasks_record.dart';
 import 'schema/long_task_lessons_record.dart';
-import 'schema/short_task_lessons_record.dart';
-import 'schema/short_lessons_sections_record.dart';
 import 'schema/categories_record.dart';
+import 'schema/long_task_specific_lesson_record.dart';
+import 'schema/school_record.dart';
+import 'schema/short_tasks_content_record.dart';
+import 'schema/quizzes_record.dart';
+import 'schema/questions_record.dart';
+import 'schema/quiz_result_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,9 +27,13 @@ export 'schema/users_record.dart';
 export 'schema/long_tasks_record.dart';
 export 'schema/short_tasks_record.dart';
 export 'schema/long_task_lessons_record.dart';
-export 'schema/short_task_lessons_record.dart';
-export 'schema/short_lessons_sections_record.dart';
 export 'schema/categories_record.dart';
+export 'schema/long_task_specific_lesson_record.dart';
+export 'schema/school_record.dart';
+export 'schema/short_tasks_content_record.dart';
+export 'schema/quizzes_record.dart';
+export 'schema/questions_record.dart';
+export 'schema/quiz_result_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -175,80 +183,6 @@ Future<List<LongTaskLessonsRecord>> queryLongTaskLessonsRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query ShortTaskLessonsRecords (as a Stream and as a Future).
-Future<int> queryShortTaskLessonsRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      ShortTaskLessonsRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<ShortTaskLessonsRecord>> queryShortTaskLessonsRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      ShortTaskLessonsRecord.collection,
-      ShortTaskLessonsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<ShortTaskLessonsRecord>> queryShortTaskLessonsRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      ShortTaskLessonsRecord.collection,
-      ShortTaskLessonsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query ShortLessonsSectionsRecords (as a Stream and as a Future).
-Future<int> queryShortLessonsSectionsRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      ShortLessonsSectionsRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<ShortLessonsSectionsRecord>> queryShortLessonsSectionsRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      ShortLessonsSectionsRecord.collection,
-      ShortLessonsSectionsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<ShortLessonsSectionsRecord>> queryShortLessonsSectionsRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      ShortLessonsSectionsRecord.collection,
-      ShortLessonsSectionsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query CategoriesRecords (as a Stream and as a Future).
 Future<int> queryCategoriesRecordCount({
   Query Function(Query)? queryBuilder,
@@ -286,6 +220,229 @@ Future<List<CategoriesRecord>> queryCategoriesRecordOnce({
       singleRecord: singleRecord,
     );
 
+/// Functions to query LongTaskSpecificLessonRecords (as a Stream and as a Future).
+Future<int> queryLongTaskSpecificLessonRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      LongTaskSpecificLessonRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<LongTaskSpecificLessonRecord>> queryLongTaskSpecificLessonRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      LongTaskSpecificLessonRecord.collection,
+      LongTaskSpecificLessonRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<LongTaskSpecificLessonRecord>>
+    queryLongTaskSpecificLessonRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollectionOnce(
+          LongTaskSpecificLessonRecord.collection,
+          LongTaskSpecificLessonRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
+
+/// Functions to query SchoolRecords (as a Stream and as a Future).
+Future<int> querySchoolRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SchoolRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SchoolRecord>> querySchoolRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SchoolRecord.collection,
+      SchoolRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SchoolRecord>> querySchoolRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SchoolRecord.collection,
+      SchoolRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ShortTasksContentRecords (as a Stream and as a Future).
+Future<int> queryShortTasksContentRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ShortTasksContentRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ShortTasksContentRecord>> queryShortTasksContentRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ShortTasksContentRecord.collection,
+      ShortTasksContentRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ShortTasksContentRecord>> queryShortTasksContentRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ShortTasksContentRecord.collection,
+      ShortTasksContentRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query QuizzesRecords (as a Stream and as a Future).
+Future<int> queryQuizzesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      QuizzesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<QuizzesRecord>> queryQuizzesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      QuizzesRecord.collection,
+      QuizzesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<QuizzesRecord>> queryQuizzesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      QuizzesRecord.collection,
+      QuizzesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query QuestionsRecords (as a Stream and as a Future).
+Future<int> queryQuestionsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      QuestionsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<QuestionsRecord>> queryQuestionsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      QuestionsRecord.collection,
+      QuestionsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<QuestionsRecord>> queryQuestionsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      QuestionsRecord.collection,
+      QuestionsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query QuizResultRecords (as a Stream and as a Future).
+Future<int> queryQuizResultRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      QuizResultRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<QuizResultRecord>> queryQuizResultRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      QuizResultRecord.collection,
+      QuizResultRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<QuizResultRecord>> queryQuizResultRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      QuizResultRecord.collection,
+      QuizResultRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
 Future<int> queryCollectionCount(
   Query collection, {
   Query Function(Query)? queryBuilder,
@@ -299,7 +456,7 @@ Future<int> queryCollectionCount(
 
   return query.count().get().catchError((err) {
     print('Error querying $collection: $err');
-  }).then((value) => value.count);
+  }).then((value) => value.count!);
 }
 
 Stream<List<T>> queryCollection<T>(
@@ -350,6 +507,21 @@ Future<List<T>> queryCollectionOnce<T>(
       .where((d) => d != null)
       .map((d) => d!)
       .toList());
+}
+
+extension FilterExtension on Filter {
+  Filter filterIn(String field, List? list) => (list?.isEmpty ?? true)
+      ? Filter(field, whereIn: null)
+      : Filter(field, whereIn: list);
+
+  Filter filterNotIn(String field, List? list) => (list?.isEmpty ?? true)
+      ? Filter(field, whereNotIn: null)
+      : Filter(field, whereNotIn: list);
+
+  Filter filterArrayContainsAny(String field, List? list) =>
+      (list?.isEmpty ?? true)
+          ? Filter(field, arrayContainsAny: null)
+          : Filter(field, arrayContainsAny: list);
 }
 
 extension QueryExtension on Query {

@@ -1,12 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'auth1_model.dart';
@@ -106,6 +105,8 @@ class _Auth1WidgetState extends State<Auth1Widget>
 
     _model.passwordConfirmController ??= TextEditingController();
     _model.passwordConfirmFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -117,15 +118,6 @@ class _Auth1WidgetState extends State<Auth1Widget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -168,27 +160,6 @@ class _Auth1WidgetState extends State<Auth1Widget>
                               ),
                             ),
                             alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        32.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'aa9x8li5' /* [Name/Logo] */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           ),
                         ),
                         Container(
@@ -237,6 +208,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     : FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -269,6 +241,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     : FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -283,7 +256,11 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                       'folmk9vz' /* Let's get started by filling o... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Plus Jakarta Sans',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                                 if (valueOrDefault<bool>(
@@ -324,7 +301,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .labelMedium,
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -387,7 +369,13 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                minLines: null,
                                                 keyboardType:
                                                     TextInputType.emailAddress,
                                                 validator: _model
@@ -407,6 +395,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     _model.passwordController,
                                                 focusNode:
                                                     _model.passwordFocusNode,
+                                                autofocus: false,
                                                 autofillHints: const [
                                                   AutofillHints.password
                                                 ],
@@ -421,7 +410,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .labelMedium,
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -506,7 +500,13 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                minLines: null,
                                                 validator: _model
                                                     .passwordControllerValidator
                                                     .asValidator(context),
@@ -539,7 +539,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   }
 
                                                   context.pushNamedAuth(
-                                                      'profileEdit',
+                                                      'homePage',
                                                       context.mounted);
                                                 },
                                                 text:
@@ -568,6 +568,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                             fontFamily:
                                                                 'Plus Jakarta Sans',
                                                             color: Colors.white,
+                                                            letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
@@ -614,7 +615,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyMedium,
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   elevation: 0.0,
                                                   borderSide: BorderSide(
                                                     color: FlutterFlowTheme.of(
@@ -647,7 +653,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     textAlign: TextAlign.center,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .labelMedium,
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
                                                 ),
                                               ),
@@ -736,6 +747,8 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                                     .override(
                                                                       fontFamily:
                                                                           'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
@@ -805,7 +818,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodySmall,
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                     borderSide: const BorderSide(
@@ -865,7 +883,13 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                minLines: null,
                                                 keyboardType:
                                                     TextInputType.emailAddress,
                                                 validator: _model
@@ -885,6 +909,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     .passwordCreateController,
                                                 focusNode: _model
                                                     .passwordCreateFocusNode,
+                                                autofocus: false,
                                                 autofillHints: const [
                                                   AutofillHints.password
                                                 ],
@@ -899,7 +924,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodySmall,
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                     borderSide: const BorderSide(
@@ -981,7 +1011,13 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                minLines: null,
                                                 validator: _model
                                                     .passwordCreateControllerValidator
                                                     .asValidator(context),
@@ -999,6 +1035,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     .passwordConfirmController,
                                                 focusNode: _model
                                                     .passwordConfirmFocusNode,
+                                                autofocus: false,
                                                 autofillHints: const [
                                                   AutofillHints.password
                                                 ],
@@ -1013,7 +1050,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodySmall,
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                     borderSide: const BorderSide(
@@ -1095,8 +1137,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                                minLines: 1,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                 validator: _model
                                                     .passwordConfirmControllerValidator
                                                     .asValidator(context),
@@ -1146,8 +1192,16 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     return;
                                                   }
 
-                                                  context.goNamedAuth(
-                                                      'homePage',
+                                                  await UsersRecord.collection
+                                                      .doc(user.uid)
+                                                      .update(
+                                                          createUsersRecordData(
+                                                        streak: 0,
+                                                        displayName: '',
+                                                      ));
+
+                                                  context.pushNamedAuth(
+                                                      'editProf',
                                                       context.mounted);
                                                 },
                                                 text:
@@ -1176,6 +1230,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                             fontFamily:
                                                                 'Plus Jakarta Sans',
                                                             color: Colors.white,
+                                                            letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
@@ -1207,7 +1262,12 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                     textAlign: TextAlign.center,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .titleSmall,
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
                                                 ),
                                               ),
@@ -1296,6 +1356,8 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                                     .override(
                                                                       fontFamily:
                                                                           'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
@@ -1339,31 +1401,6 @@ class _Auth1WidgetState extends State<Auth1Widget>
                   ),
                 ),
               ),
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-              ))
-                Expanded(
-                  flex: 6,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      width: 100.0,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/f-f-games-660ryh/assets/41gtlg4nnch2/demoProject@2x.jpg',
-                          ),
-                        ),
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

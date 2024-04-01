@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 
@@ -35,17 +34,35 @@ class ShortTasksRecord extends FirestoreRecord {
   String get buttonText => _buttonText ?? '';
   bool hasButtonText() => _buttonText != null;
 
-  // "category" field.
-  DocumentReference? _category;
-  DocumentReference? get category => _category;
-  bool hasCategory() => _category != null;
+  // "categories" field.
+  List<DocumentReference>? _categories;
+  List<DocumentReference> get categories => _categories ?? const [];
+  bool hasCategories() => _categories != null;
+
+  // "userFavorites" field.
+  List<DocumentReference>? _userFavorites;
+  List<DocumentReference> get userFavorites => _userFavorites ?? const [];
+  bool hasUserFavorites() => _userFavorites != null;
+
+  // "introPara" field.
+  String? _introPara;
+  String get introPara => _introPara ?? '';
+  bool hasIntroPara() => _introPara != null;
+
+  // "usersCompleted" field.
+  List<DocumentReference>? _usersCompleted;
+  List<DocumentReference> get usersCompleted => _usersCompleted ?? const [];
+  bool hasUsersCompleted() => _usersCompleted != null;
 
   void _initializeFields() {
     _taskName = snapshotData['taskName'] as String?;
     _image = snapshotData['image'] as String?;
     _description = snapshotData['description'] as String?;
     _buttonText = snapshotData['buttonText'] as String?;
-    _category = snapshotData['category'] as DocumentReference?;
+    _categories = getDataList(snapshotData['categories']);
+    _userFavorites = getDataList(snapshotData['userFavorites']);
+    _introPara = snapshotData['introPara'] as String?;
+    _usersCompleted = getDataList(snapshotData['usersCompleted']);
   }
 
   static CollectionReference get collection =>
@@ -87,7 +104,7 @@ Map<String, dynamic> createShortTasksRecordData({
   String? image,
   String? description,
   String? buttonText,
-  DocumentReference? category,
+  String? introPara,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -95,7 +112,7 @@ Map<String, dynamic> createShortTasksRecordData({
       'image': image,
       'description': description,
       'buttonText': buttonText,
-      'category': category,
+      'introPara': introPara,
     }.withoutNulls,
   );
 
@@ -107,16 +124,28 @@ class ShortTasksRecordDocumentEquality implements Equality<ShortTasksRecord> {
 
   @override
   bool equals(ShortTasksRecord? e1, ShortTasksRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.taskName == e2?.taskName &&
         e1?.image == e2?.image &&
         e1?.description == e2?.description &&
         e1?.buttonText == e2?.buttonText &&
-        e1?.category == e2?.category;
+        listEquality.equals(e1?.categories, e2?.categories) &&
+        listEquality.equals(e1?.userFavorites, e2?.userFavorites) &&
+        e1?.introPara == e2?.introPara &&
+        listEquality.equals(e1?.usersCompleted, e2?.usersCompleted);
   }
 
   @override
-  int hash(ShortTasksRecord? e) => const ListEquality().hash(
-      [e?.taskName, e?.image, e?.description, e?.buttonText, e?.category]);
+  int hash(ShortTasksRecord? e) => const ListEquality().hash([
+        e?.taskName,
+        e?.image,
+        e?.description,
+        e?.buttonText,
+        e?.categories,
+        e?.userFavorites,
+        e?.introPara,
+        e?.usersCompleted
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ShortTasksRecord;

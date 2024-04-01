@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -56,6 +55,36 @@ class UsersRecord extends FirestoreRecord {
   int get streak => _streak ?? 0;
   bool hasStreak() => _streak != null;
 
+  // "schoolRef" field.
+  DocumentReference? _schoolRef;
+  DocumentReference? get schoolRef => _schoolRef;
+  bool hasSchoolRef() => _schoolRef != null;
+
+  // "schoolName" field.
+  String? _schoolName;
+  String get schoolName => _schoolName ?? '';
+  bool hasSchoolName() => _schoolName != null;
+
+  // "oldSchoolRef" field.
+  DocumentReference? _oldSchoolRef;
+  DocumentReference? get oldSchoolRef => _oldSchoolRef;
+  bool hasOldSchoolRef() => _oldSchoolRef != null;
+
+  // "oldSchoolName" field.
+  String? _oldSchoolName;
+  String get oldSchoolName => _oldSchoolName ?? '';
+  bool hasOldSchoolName() => _oldSchoolName != null;
+
+  // "lastExcersice" field.
+  DateTime? _lastExcersice;
+  DateTime? get lastExcersice => _lastExcersice;
+  bool hasLastExcersice() => _lastExcersice != null;
+
+  // "daysSinceLastExcersise" field.
+  int? _daysSinceLastExcersise;
+  int get daysSinceLastExcersise => _daysSinceLastExcersise ?? 0;
+  bool hasDaysSinceLastExcersise() => _daysSinceLastExcersise != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -65,6 +94,13 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _name = snapshotData['name'] as String?;
     _streak = castToType<int>(snapshotData['streak']);
+    _schoolRef = snapshotData['schoolRef'] as DocumentReference?;
+    _schoolName = snapshotData['schoolName'] as String?;
+    _oldSchoolRef = snapshotData['oldSchoolRef'] as DocumentReference?;
+    _oldSchoolName = snapshotData['oldSchoolName'] as String?;
+    _lastExcersice = snapshotData['lastExcersice'] as DateTime?;
+    _daysSinceLastExcersise =
+        castToType<int>(snapshotData['daysSinceLastExcersise']);
   }
 
   static CollectionReference get collection =>
@@ -109,6 +145,12 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   String? name,
   int? streak,
+  DocumentReference? schoolRef,
+  String? schoolName,
+  DocumentReference? oldSchoolRef,
+  String? oldSchoolName,
+  DateTime? lastExcersice,
+  int? daysSinceLastExcersise,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -120,6 +162,12 @@ Map<String, dynamic> createUsersRecordData({
       'phone_number': phoneNumber,
       'name': name,
       'streak': streak,
+      'schoolRef': schoolRef,
+      'schoolName': schoolName,
+      'oldSchoolRef': oldSchoolRef,
+      'oldSchoolName': oldSchoolName,
+      'lastExcersice': lastExcersice,
+      'daysSinceLastExcersise': daysSinceLastExcersise,
     }.withoutNulls,
   );
 
@@ -138,7 +186,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.name == e2?.name &&
-        e1?.streak == e2?.streak;
+        e1?.streak == e2?.streak &&
+        e1?.schoolRef == e2?.schoolRef &&
+        e1?.schoolName == e2?.schoolName &&
+        e1?.oldSchoolRef == e2?.oldSchoolRef &&
+        e1?.oldSchoolName == e2?.oldSchoolName &&
+        e1?.lastExcersice == e2?.lastExcersice &&
+        e1?.daysSinceLastExcersise == e2?.daysSinceLastExcersise;
   }
 
   @override
@@ -150,7 +204,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.name,
-        e?.streak
+        e?.streak,
+        e?.schoolRef,
+        e?.schoolName,
+        e?.oldSchoolRef,
+        e?.oldSchoolName,
+        e?.lastExcersice,
+        e?.daysSinceLastExcersise
       ]);
 
   @override

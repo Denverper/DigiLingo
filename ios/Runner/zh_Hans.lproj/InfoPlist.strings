@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "为了拍摄照片或视频，此应用程序需要访问相机的权限。";
+NSPhotoLibraryUsageDescription = "为了上传数据，该应用程序需要访问照片库的权限。";

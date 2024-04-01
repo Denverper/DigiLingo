@@ -3,8 +3,9 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -132,12 +133,53 @@ class _HomePageWidgetState extends State<HomePageWidget>
         ),
       ],
     ),
+    'listViewOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 80.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
   };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (currentUserDocument?.lastExcersice != null) {
+        await currentUserReference!.update(createUsersRecordData(
+          daysSinceLastExcersise: functions.daysBetween(
+              currentUserDocument!.lastExcersice!, getCurrentTimestamp),
+        ));
+        if (valueOrDefault(currentUserDocument?.daysSinceLastExcersise, 0) >
+            1) {
+          if (valueOrDefault(currentUserDocument?.streak, 0) > 0) {
+            await currentUserReference!.update(createUsersRecordData(
+              streak: 0,
+            ));
+
+            context.pushNamed('streakReset');
+          }
+        }
+      }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -149,15 +191,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -174,15 +207,34 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 child: Stack(
                   alignment: const AlignmentDirectional(0.0, -1.0),
                   children: [
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, -1.0),
-                      child: Image.network(
-                        'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxzcGFjZXxlbnwwfHx8fDE3MDA5NDgzNTV8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                        width: double.infinity,
-                        height: 400.0,
-                        fit: BoxFit.cover,
+                    if (responsiveVisibility(
+                      context: context,
+                      phone: false,
+                      tablet: false,
+                    ))
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxzcGFjZXxlbnwwfHx8fDE3MDA5NDgzNTV8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                          width: double.infinity,
+                          height: 604.0,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
+                    if (responsiveVisibility(
+                      context: context,
+                      tabletLandscape: false,
+                      desktop: false,
+                    ))
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxzcGFjZXxlbnwwfHx8fDE3MDA5NDgzNTV8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                          width: double.infinity,
+                          height: 400.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     Container(
                       width: double.infinity,
                       height: 500.0,
@@ -205,15 +257,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'l9j81yat' /* [Logo/Name] */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/digilingo.png',
+                                        width: 110.0,
+                                        height: 45.0,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                     Expanded(
@@ -272,6 +322,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .info,
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                 ),
                                                       ),
                                                     ),
@@ -363,6 +415,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .info,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                         Padding(
@@ -382,6 +435,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .info,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -397,6 +451,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .info,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ],
@@ -418,6 +473,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               .override(
                                                 fontFamily: 'Urbanist',
                                                 color: Colors.white,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -434,7 +490,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 height: 700.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                      .primaryBackground,
                                   borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
@@ -461,7 +517,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               'g80flidl' /* Choose Your Path. */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .headlineMedium,
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily: 'Urbanist',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ).animateOnPageLoad(animationsMap[
                                               'textOnPageLoadAnimation1']!),
                                         ),
@@ -474,7 +534,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               '3cku64h0' /* Explore the Digital World */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .labelMedium,
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily:
+                                                      'Plus Jakarta Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ).animateOnPageLoad(animationsMap[
                                               'textOnPageLoadAnimation2']!),
                                         ),
@@ -489,8 +554,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: 200.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
                                               child: StreamBuilder<
                                                   List<CategoriesRecord>>(
                                                 stream: queryCategoriesRecord(),
@@ -550,7 +620,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 color: Color(
                                                                     0x230F1113),
                                                                 offset: Offset(
-                                                                    0.0, 4.0),
+                                                                  0.0,
+                                                                  4.0,
+                                                                ),
                                                               )
                                                             ],
                                                             borderRadius:
@@ -597,28 +669,51 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      context
-                                                                          .pushNamed(
-                                                                        'CourseCategory',
-                                                                        queryParameters:
-                                                                            {
-                                                                          'categoryRef':
-                                                                              serializeParam(
-                                                                            listViewCategoriesRecord.reference,
-                                                                            ParamType.DocumentReference,
-                                                                          ),
-                                                                        }.withoutNulls,
-                                                                        extra: <String,
-                                                                            dynamic>{
-                                                                          kTransitionInfoKey:
-                                                                              const TransitionInfo(
-                                                                            hasTransition:
-                                                                                true,
-                                                                            transitionType:
-                                                                                PageTransitionType.fade,
-                                                                          ),
-                                                                        },
-                                                                      );
+                                                                      if (listViewCategoriesRecord
+                                                                              .categoryName ==
+                                                                          'Favorites') {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'FavoriteCourses',
+                                                                          queryParameters:
+                                                                              {
+                                                                            'categoryRef':
+                                                                                serializeParam(
+                                                                              listViewCategoriesRecord.reference,
+                                                                              ParamType.DocumentReference,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <String,
+                                                                              dynamic>{
+                                                                            kTransitionInfoKey:
+                                                                                const TransitionInfo(
+                                                                              hasTransition: true,
+                                                                              transitionType: PageTransitionType.fade,
+                                                                            ),
+                                                                          },
+                                                                        );
+                                                                      } else {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'CourseCategory',
+                                                                          queryParameters:
+                                                                              {
+                                                                            'categoryRef':
+                                                                                serializeParam(
+                                                                              listViewCategoriesRecord.reference,
+                                                                              ParamType.DocumentReference,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <String,
+                                                                              dynamic>{
+                                                                            kTransitionInfoKey:
+                                                                                const TransitionInfo(
+                                                                              hasTransition: true,
+                                                                              transitionType: PageTransitionType.fade,
+                                                                            ),
+                                                                          },
+                                                                        );
+                                                                      }
                                                                     },
                                                                     child:
                                                                         Container(
@@ -665,7 +760,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium,
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Plus Jakarta Sans',
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
                                                                 ),
                                                               ),
                                                             ],
@@ -689,7 +790,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               '3nlrqlxc' /* Training Zone */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .headlineMedium,
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily: 'Urbanist',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ).animateOnPageLoad(animationsMap[
                                               'textOnPageLoadAnimation3']!),
                                         ),
@@ -702,211 +807,481 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               'eusrqrvm' /* Pick up some quick, impactful ... */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .labelMedium,
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily:
+                                                      'Plus Jakarta Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ).animateOnPageLoad(animationsMap[
                                               'textOnPageLoadAnimation4']!),
                                         ),
-                                        Container(
-                                          decoration: const BoxDecoration(),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 48.0),
-                                            child: StreamBuilder<
-                                                List<ShortTasksRecord>>(
-                                              stream: queryShortTasksRecord(),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child: SpinKitFadingCube(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 50.0,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<ShortTasksRecord>
-                                                    listViewShortTasksRecordList =
-                                                    snapshot.data!;
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      listViewShortTasksRecordList
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, listViewIndex) {
-                                                    final listViewShortTasksRecord =
-                                                        listViewShortTasksRecordList[
-                                                            listViewIndex];
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  8.0,
-                                                                  16.0,
-                                                                  8.0),
-                                                      child: Container(
-                                                        width: 270.0,
-                                                        decoration:
-                                                            BoxDecoration(
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          tabletLandscape: false,
+                                          desktop: false,
+                                        ))
+                                          Container(
+                                            decoration: const BoxDecoration(),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 48.0),
+                                              child: StreamBuilder<
+                                                  List<ShortTasksRecord>>(
+                                                stream: queryShortTasksRecord(),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child:
+                                                            SpinKitFadingCube(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .secondaryBackground,
-                                                          boxShadow: const [
-                                                            BoxShadow(
-                                                              blurRadius: 8.0,
-                                                              color: Color(
-                                                                  0x230F1113),
-                                                              offset: Offset(
-                                                                  0.0, 4.0),
-                                                            )
-                                                          ],
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          border: Border.all(
+                                                              .primary,
+                                                          size: 50.0,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<ShortTasksRecord>
+                                                      listViewShortTasksRecordList =
+                                                      snapshot.data!;
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listViewShortTasksRecordList
+                                                            .length,
+                                                    itemBuilder: (context,
+                                                        listViewIndex) {
+                                                      final listViewShortTasksRecord =
+                                                          listViewShortTasksRecordList[
+                                                              listViewIndex];
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    8.0,
+                                                                    16.0,
+                                                                    8.0),
+                                                        child: Container(
+                                                          width: 270.0,
+                                                          decoration:
+                                                              BoxDecoration(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryBackground,
-                                                            width: 1.0,
+                                                                .secondaryBackground,
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                blurRadius: 8.0,
+                                                                color: Color(
+                                                                    0x230F1113),
+                                                                offset: Offset(
+                                                                  0.0,
+                                                                  4.0,
+                                                                ),
+                                                              )
+                                                            ],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                              width: 1.0,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                context
-                                                                    .pushNamed(
-                                                                  'shortTaskLessons',
-                                                                  queryParameters:
-                                                                      {
-                                                                    'shortTaskReference':
-                                                                        serializeParam(
-                                                                      listViewShortTasksRecord
-                                                                          .reference,
-                                                                      ParamType
-                                                                          .DocumentReference,
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'shortTaskLessons',
+                                                                    queryParameters:
+                                                                        {
+                                                                      'shortTaskReference':
+                                                                          serializeParam(
+                                                                        listViewShortTasksRecord
+                                                                            .reference,
+                                                                        ParamType
+                                                                            .DocumentReference,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child: Hero(
+                                                                  tag: listViewShortTasksRecord
+                                                                      .image,
+                                                                  transitionOnUserGestures:
+                                                                      true,
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              0.0),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              0.0),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              12.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              12.0),
                                                                     ),
-                                                                  }.withoutNulls,
-                                                                );
-                                                              },
-                                                              child: Hero(
-                                                                tag:
-                                                                    listViewShortTasksRecord
-                                                                        .image,
-                                                                transitionOnUserGestures:
-                                                                    true,
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            0.0),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            0.0),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            12.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  child: Image
-                                                                      .network(
-                                                                    listViewShortTasksRecord
-                                                                        .image,
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        200.0,
-                                                                    fit: BoxFit
-                                                                        .cover,
+                                                                    child: Image
+                                                                        .network(
+                                                                      listViewShortTasksRecord
+                                                                          .image,
+                                                                      width: double
+                                                                          .infinity,
+                                                                      height:
+                                                                          200.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
+                                                              Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        12.0,
+                                                                        16.0,
+                                                                        12.0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                            listViewShortTasksRecord.taskName,
+                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                  fontFamily: 'Plus Jakarta Sans',
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
+                                                                          Text(
+                                                                            listViewShortTasksRecord.description,
+                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                  fontFamily: 'Plus Jakarta Sans',
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    if (listViewShortTasksRecord
+                                                                        .usersCompleted
+                                                                        .contains(
+                                                                            currentUserReference))
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .check_circle,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          size:
+                                                                              35.0,
+                                                                        ),
+                                                                      ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'listViewOnPageLoadAnimation2']!);
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          phone: false,
+                                          tablet: false,
+                                        ))
+                                          Container(
+                                            width: double.infinity,
+                                            height: 340.0,
+                                            decoration: const BoxDecoration(),
+                                            child: Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 48.0),
+                                                child: StreamBuilder<
+                                                    List<ShortTasksRecord>>(
+                                                  stream:
+                                                      queryShortTasksRecord(),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              SpinKitFadingCube(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            size: 50.0,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    List<ShortTasksRecord>
+                                                        listViewShortTasksRecordList =
+                                                        snapshot.data!;
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      itemCount:
+                                                          listViewShortTasksRecordList
+                                                              .length,
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewShortTasksRecord =
+                                                            listViewShortTasksRecordList[
+                                                                listViewIndex];
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      8.0,
+                                                                      16.0,
+                                                                      8.0),
+                                                          child: Container(
+                                                            width: 270.0,
+                                                            height: 200.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              boxShadow: const [
+                                                                BoxShadow(
+                                                                  blurRadius:
+                                                                      8.0,
+                                                                  color: Color(
+                                                                      0x230F1113),
+                                                                  offset:
+                                                                      Offset(
+                                                                    0.0,
+                                                                    4.0,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12.0),
+                                                              border:
+                                                                  Border.all(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                width: 1.0,
+                                                              ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'shortTaskLessons',
+                                                                      queryParameters:
+                                                                          {
+                                                                        'shortTaskReference':
+                                                                            serializeParam(
+                                                                          listViewShortTasksRecord
+                                                                              .reference,
+                                                                          ParamType
+                                                                              .DocumentReference,
+                                                                        ),
+                                                                      }.withoutNulls,
+                                                                    );
+                                                                  },
+                                                                  child: Hero(
+                                                                    tag: listViewShortTasksRecord
+                                                                        .image,
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(0.0),
+                                                                        bottomRight:
+                                                                            Radius.circular(0.0),
+                                                                        topLeft:
+                                                                            Radius.circular(12.0),
+                                                                        topRight:
+                                                                            Radius.circular(12.0),
+                                                                      ),
+                                                                      child: Image
+                                                                          .network(
+                                                                        listViewShortTasksRecord
+                                                                            .image,
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            200.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           12.0,
                                                                           16.0,
                                                                           12.0),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Expanded(
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Text(
-                                                                          listViewShortTasksRecord
-                                                                              .taskName,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyLarge,
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Expanded(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              listViewShortTasksRecord.taskName,
+                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                    fontFamily: 'Plus Jakarta Sans',
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                            Text(
+                                                                              listViewShortTasksRecord.description,
+                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                    fontFamily: 'Plus Jakarta Sans',
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
                                                                         ),
-                                                                        Text(
-                                                                          listViewShortTasksRecord
-                                                                              .description,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).labelSmall,
+                                                                      ),
+                                                                      if (listViewShortTasksRecord
+                                                                          .usersCompleted
+                                                                          .contains(
+                                                                              currentUserReference))
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.check_circle,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            size:
+                                                                                35.0,
+                                                                          ),
                                                                         ),
-                                                                      ],
-                                                                    ),
+                                                                    ],
                                                                   ),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
+                                                          ),
+                                                        );
+                                                      },
+                                                    ).animateOnPageLoad(
+                                                        animationsMap[
+                                                            'listViewOnPageLoadAnimation3']!);
                                                   },
-                                                ).animateOnPageLoad(animationsMap[
-                                                    'listViewOnPageLoadAnimation2']!);
-                                              },
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                   ),

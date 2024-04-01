@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "Để chụp ảnh hoặc quay video, ứng dụng này cần có quyền truy cập vào máy ảnh.";
+NSPhotoLibraryUsageDescription = "Để tải lên dữ liệu, ứng dụng này cần có quyền truy cập vào thư viện ảnh.";

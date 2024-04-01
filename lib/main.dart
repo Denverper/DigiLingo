@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'DigitalLiteracy',
+      title: 'Digilingo',
       localizationsDelegates: const [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -96,6 +96,14 @@ class _MyAppState extends State<MyApp> {
         Locale('en'),
         Locale('es'),
         Locale('fr'),
+        Locale('am'),
+        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
+        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+        Locale('ar'),
+        Locale('ru'),
+        Locale('ne'),
+        Locale('ja'),
+        Locale('vi'),
       ],
       theme: ThemeData(
         brightness: Brightness.light,
@@ -104,6 +112,7 @@ class _MyAppState extends State<MyApp> {
           interactive: false,
           thickness: MaterialStateProperty.all(4.0),
         ),
+        useMaterial3: false,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -112,6 +121,7 @@ class _MyAppState extends State<MyApp> {
           interactive: false,
           thickness: MaterialStateProperty.all(4.0),
         ),
+        useMaterial3: false,
       ),
       themeMode: _themeMode,
       routerConfig: _router,

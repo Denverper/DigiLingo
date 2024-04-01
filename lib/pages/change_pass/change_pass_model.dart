@@ -10,8 +10,6 @@ class ChangePassModel extends FlutterFlowModel<ChangePassWidget> {
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -20,8 +18,4 @@ class ChangePassModel extends FlutterFlowModel<ChangePassWidget> {
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }
