@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1004039114611-m2dg6lugval47eiokmunvs4hi7gq8g1j.apps.googleusercontent.com</string>
+	<string>1004039114611-omggsl68uvtb0vcv7n3mkga6qb2lj4fa.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1004039114611-m2dg6lugval47eiokmunvs4hi7gq8g1j</string>
+	<string>com.googleusercontent.apps.1004039114611-omggsl68uvtb0vcv7n3mkga6qb2lj4fa</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>1004039114611-jhbfsrkbqf2tq87gu3068j0044knmh6b.apps.googleusercontent.com</string>
+	<string>1004039114611-ehms17pj19u1lpib0kcm4cjll0ij6e63.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAcEn04RDQ19KCBNFRj0ShKYUhinVrfG0g</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.DenverPersinger.digilingo</string>
+	<string>com.DenverPersinger.digilingoTest</string>
 	<key>PROJECT_ID</key>
 	<string>digital-literacy-f0owkn</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1004039114611:ios:6f9f349d84db84a8b3ff06</string>
+	<string>1:1004039114611:ios:ce8a58935c323852b3ff06</string>
 </dict>
 </plist>

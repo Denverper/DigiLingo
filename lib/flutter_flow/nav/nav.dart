@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -71,13 +73,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomePageWidget() : const StartPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const Auth1Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomePageWidget() : const StartPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const Auth1Widget(),
         ),
         FFRoute(
           name: 'Auth1',
@@ -85,19 +87,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Auth1Widget(),
         ),
         FFRoute(
-          name: 'profileEdit',
-          path: '/profileEdit',
-          builder: (context, params) => const ProfileEditWidget(),
-        ),
-        FFRoute(
           name: 'profileView',
           path: '/profileView',
-          builder: (context, params) => const ProfileViewWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'profileView')
+              : const ProfileViewWidget(),
         ),
         FFRoute(
           name: 'homePage',
           path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'homePage')
+              : const HomePageWidget(),
         ),
         FFRoute(
           name: 'changePass',
@@ -108,24 +109,175 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'longTasksLessons',
           path: '/longTasksLessons',
           builder: (context, params) => LongTasksLessonsWidget(
-            longTaskReference: params.getParam('longTaskReference',
-                ParamType.DocumentReference, false, ['LongTasks']),
+            longTaskReference: params.getParam(
+              'longTaskReference',
+              ParamType.DocumentReference,
+              false,
+              ['LongTasks'],
+            ),
           ),
         ),
         FFRoute(
           name: 'shortTaskLessons',
           path: '/shortTaskLessons',
-          builder: (context, params) => ShortTaskLessonsWidget(
-            shortTaskReference: params.getParam('shortTaskReference',
-                ParamType.DocumentReference, false, ['ShortTasks']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: ShortTaskLessonsWidget(
+              shortTaskReference: params.getParam(
+                'shortTaskReference',
+                ParamType.DocumentReference,
+                false,
+                ['ShortTasks'],
+              ),
+            ),
           ),
         ),
         FFRoute(
-          name: 'startPage',
-          path: '/startPage',
-          builder: (context, params) => const StartPageWidget(),
+          name: 'MyCourses',
+          path: '/myCourses',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'MyCourses')
+              : MyCoursesWidget(
+                  categoryRef: params.getParam(
+                    'categoryRef',
+                    ParamType.DocumentReference,
+                    false,
+                    ['categories'],
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'CourseCategory',
+          path: '/courseCategory',
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CourseCategoryWidget(
+              categoryRef: params.getParam(
+                'categoryRef',
+                ParamType.DocumentReference,
+                false,
+                ['categories'],
+              ),
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'LongTaskIntro',
+          path: '/longTaskIntro',
+          builder: (context, params) => LongTaskIntroWidget(
+            longTaskLesRef: params.getParam(
+              'longTaskLesRef',
+              ParamType.DocumentReference,
+              false,
+              ['LongTaskLessons'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'FavoriteCourses',
+          path: '/favoriteCourses',
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: FavoriteCoursesWidget(
+              categoryRef: params.getParam(
+                'categoryRef',
+                ParamType.DocumentReference,
+                false,
+                ['categories'],
+              ),
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ShortContentSection',
+          path: '/shortContentSection',
+          builder: (context, params) => ShortContentSectionWidget(
+            shortTaskContentRef: params.getParam(
+              'shortTaskContentRef',
+              ParamType.DocumentReference,
+              false,
+              ['ShortTasksContent'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'quizComplete',
+          path: '/quizComplete',
+          asyncParams: {
+            'quizResult': getDoc(['quizResult'], QuizResultRecord.fromSnapshot),
+            'quizRef': getDoc(['quizzes'], QuizzesRecord.fromSnapshot),
+          },
+          builder: (context, params) => QuizCompleteWidget(
+            numCorrect: params.getParam(
+              'numCorrect',
+              ParamType.int,
+            ),
+            quizResult: params.getParam(
+              'quizResult',
+              ParamType.Document,
+            ),
+            quizRef: params.getParam(
+              'quizRef',
+              ParamType.Document,
+            ),
+            shortContentTask: params.getParam(
+              'shortContentTask',
+              ParamType.DocumentReference,
+              false,
+              ['ShortTasksContent'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'quizQuestions',
+          path: '/quizQuestions',
+          asyncParams: {
+            'quizRef': getDoc(['quizzes'], QuizzesRecord.fromSnapshot),
+            'quizResultRef':
+                getDoc(['quizResult'], QuizResultRecord.fromSnapshot),
+          },
+          builder: (context, params) => QuizQuestionsWidget(
+            index: params.getParam(
+              'index',
+              ParamType.int,
+            ),
+            shortContentRef: params.getParam(
+              'shortContentRef',
+              ParamType.DocumentReference,
+              false,
+              ['ShortTasksContent'],
+            ),
+            quizRef: params.getParam(
+              'quizRef',
+              ParamType.Document,
+            ),
+            quizResultRef: params.getParam(
+              'quizResultRef',
+              ParamType.Document,
+            ),
+            numCorrectAnswers: params.getParam(
+              'numCorrectAnswers',
+              ParamType.int,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'streakIncrease',
+          path: '/streakIncrease',
+          builder: (context, params) => const StreakIncreaseWidget(),
+        ),
+        FFRoute(
+          name: 'streakReset',
+          path: '/streakReset',
+          builder: (context, params) => const StreakResetWidget(),
+        ),
+        FFRoute(
+          name: 'editProf',
+          path: '/editProf',
+          builder: (context, params) => const EditProfWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
@@ -243,6 +395,7 @@ class FFParameters {
     ParamType type, [
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -256,8 +409,13 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+      collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
+    );
   }
 }
 
@@ -290,11 +448,12 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/startPage';
+            return '/auth1';
           }
           return null;
         },
         pageBuilder: (context, state) {
+          fixStatusBarOniOS16AndBelow(context);
           final ffParams = FFParameters(state, asyncParams);
           final page = ffParams.hasFutures
               ? FutureBuilder(
@@ -318,13 +477,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },

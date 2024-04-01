@@ -1,0 +1,81 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{document} {
+      allow create: if request.auth.uid == document;
+      allow read: if request.auth.uid == document;
+      allow write: if request.auth.uid == document;
+      allow delete: if false;
+    }
+
+    match /LongTasks/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /ShortTasks/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /LongTaskLessons/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /categories/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /LongTaskSpecificLesson/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /School/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    match /ShortTasksContent/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /quizzes/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /questions/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /quizResult/{document} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+  }
+}

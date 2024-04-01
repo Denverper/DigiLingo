@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "ፎቶ ወይም ቪዲዮ ለማንሳት ይህ መተግበሪያ ካሜራውን ለመድረስ ፍቃድ ይፈልጋል።";
+NSPhotoLibraryUsageDescription = "ውሂብ ለመስቀል ይህ መተግበሪያ የፎቶ ቤተ-መጽሐፍቱን ለመድረስ ፈቃድ ይፈልጋል።";

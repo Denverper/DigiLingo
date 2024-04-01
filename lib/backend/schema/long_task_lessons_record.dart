@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class LongTaskLessonsRecord extends FirestoreRecord {
   LongTaskLessonsRecord._(
@@ -30,22 +30,35 @@ class LongTaskLessonsRecord extends FirestoreRecord {
   String get name => _name ?? '';
   bool hasName() => _name != null;
 
-  // "isCompleted" field.
-  bool? _isCompleted;
-  bool get isCompleted => _isCompleted ?? false;
-  bool hasIsCompleted() => _isCompleted != null;
+  // "length" field.
+  int? _length;
+  int get length => _length ?? 0;
+  bool hasLength() => _length != null;
 
-  // "image" field.
-  String? _image;
-  String get image => _image ?? '';
-  bool hasImage() => _image != null;
+  // "isIntro" field.
+  bool? _isIntro;
+  bool get isIntro => _isIntro ?? false;
+  bool hasIsIntro() => _isIntro != null;
+
+  // "studentsCompleted" field.
+  List<DocumentReference>? _studentsCompleted;
+  List<DocumentReference> get studentsCompleted =>
+      _studentsCompleted ?? const [];
+  bool hasStudentsCompleted() => _studentsCompleted != null;
+
+  // "numPartsMinusOne" field.
+  int? _numPartsMinusOne;
+  int get numPartsMinusOne => _numPartsMinusOne ?? 0;
+  bool hasNumPartsMinusOne() => _numPartsMinusOne != null;
 
   void _initializeFields() {
     _number = castToType<int>(snapshotData['number']);
     _longTaskRef = snapshotData['longTaskRef'] as DocumentReference?;
     _name = snapshotData['name'] as String?;
-    _isCompleted = snapshotData['isCompleted'] as bool?;
-    _image = snapshotData['image'] as String?;
+    _length = castToType<int>(snapshotData['length']);
+    _isIntro = snapshotData['isIntro'] as bool?;
+    _studentsCompleted = getDataList(snapshotData['studentsCompleted']);
+    _numPartsMinusOne = castToType<int>(snapshotData['numPartsMinusOne']);
   }
 
   static CollectionReference get collection =>
@@ -86,16 +99,18 @@ Map<String, dynamic> createLongTaskLessonsRecordData({
   int? number,
   DocumentReference? longTaskRef,
   String? name,
-  bool? isCompleted,
-  String? image,
+  int? length,
+  bool? isIntro,
+  int? numPartsMinusOne,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'number': number,
       'longTaskRef': longTaskRef,
       'name': name,
-      'isCompleted': isCompleted,
-      'image': image,
+      'length': length,
+      'isIntro': isIntro,
+      'numPartsMinusOne': numPartsMinusOne,
     }.withoutNulls,
   );
 
@@ -108,16 +123,26 @@ class LongTaskLessonsRecordDocumentEquality
 
   @override
   bool equals(LongTaskLessonsRecord? e1, LongTaskLessonsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.number == e2?.number &&
         e1?.longTaskRef == e2?.longTaskRef &&
         e1?.name == e2?.name &&
-        e1?.isCompleted == e2?.isCompleted &&
-        e1?.image == e2?.image;
+        e1?.length == e2?.length &&
+        e1?.isIntro == e2?.isIntro &&
+        listEquality.equals(e1?.studentsCompleted, e2?.studentsCompleted) &&
+        e1?.numPartsMinusOne == e2?.numPartsMinusOne;
   }
 
   @override
-  int hash(LongTaskLessonsRecord? e) => const ListEquality()
-      .hash([e?.number, e?.longTaskRef, e?.name, e?.isCompleted, e?.image]);
+  int hash(LongTaskLessonsRecord? e) => const ListEquality().hash([
+        e?.number,
+        e?.longTaskRef,
+        e?.name,
+        e?.length,
+        e?.isIntro,
+        e?.studentsCompleted,
+        e?.numPartsMinusOne
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is LongTaskLessonsRecord;

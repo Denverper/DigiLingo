@@ -304,24 +304,24 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF4B986C);
+  late Color primary = const Color(0x70179F1F);
   late Color secondary = const Color(0xFF928163);
   late Color tertiary = const Color(0xFF6D604A);
-  late Color alternate = const Color(0xFF17282E);
+  late Color alternate = const Color(0x14FFFFFF);
   late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFF658593);
-  late Color primaryBackground = const Color(0xFF0B191E);
-  late Color secondaryBackground = const Color(0xFF0D1E23);
-  late Color accent1 = const Color(0x4D4B986C);
-  late Color accent2 = const Color(0x4D928163);
-  late Color accent3 = const Color(0x4C6D604A);
-  late Color accent4 = const Color(0xB20B191E);
+  late Color secondaryText = const Color(0xFFDEDED8);
+  late Color primaryBackground = const Color(0xFF151414);
+  late Color secondaryBackground = const Color(0xA2030303);
+  late Color accent1 = const Color(0x70116917);
+  late Color accent2 = const Color(0xD1E9CE47);
+  late Color accent3 = const Color(0x4CFAFAFA);
+  late Color accent4 = const Color(0xB2337F9F);
   late Color success = const Color(0xFF336A4A);
   late Color warning = const Color(0xFFF3C344);
   late Color error = const Color(0xFFC4454D);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color primaryBtnText = const Color(0xFFFFFFFF);
+  late Color primaryBtnText = const Color(0xFF000000);
   late Color lineColor = const Color(0xFF22282F);
   late Color backgroundComponents = const Color(0xFF1D2428);
 }

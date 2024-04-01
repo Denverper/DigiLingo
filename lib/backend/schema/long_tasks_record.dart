@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 
@@ -35,11 +34,23 @@ class LongTasksRecord extends FirestoreRecord {
   String get buttonText => _buttonText ?? '';
   bool hasButtonText() => _buttonText != null;
 
+  // "categories" field.
+  List<DocumentReference>? _categories;
+  List<DocumentReference> get categories => _categories ?? const [];
+  bool hasCategories() => _categories != null;
+
+  // "userFavorites" field.
+  List<DocumentReference>? _userFavorites;
+  List<DocumentReference> get userFavorites => _userFavorites ?? const [];
+  bool hasUserFavorites() => _userFavorites != null;
+
   void _initializeFields() {
     _taskName = snapshotData['taskName'] as String?;
     _description = snapshotData['description'] as String?;
     _image = snapshotData['image'] as String?;
     _buttonText = snapshotData['buttonText'] as String?;
+    _categories = getDataList(snapshotData['categories']);
+    _userFavorites = getDataList(snapshotData['userFavorites']);
   }
 
   static CollectionReference get collection =>
@@ -99,15 +110,24 @@ class LongTasksRecordDocumentEquality implements Equality<LongTasksRecord> {
 
   @override
   bool equals(LongTasksRecord? e1, LongTasksRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.taskName == e2?.taskName &&
         e1?.description == e2?.description &&
         e1?.image == e2?.image &&
-        e1?.buttonText == e2?.buttonText;
+        e1?.buttonText == e2?.buttonText &&
+        listEquality.equals(e1?.categories, e2?.categories) &&
+        listEquality.equals(e1?.userFavorites, e2?.userFavorites);
   }
 
   @override
-  int hash(LongTasksRecord? e) => const ListEquality()
-      .hash([e?.taskName, e?.description, e?.image, e?.buttonText]);
+  int hash(LongTasksRecord? e) => const ListEquality().hash([
+        e?.taskName,
+        e?.description,
+        e?.image,
+        e?.buttonText,
+        e?.categories,
+        e?.userFavorites
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is LongTasksRecord;

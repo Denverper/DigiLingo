@@ -1,13 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'profile_view_model.dart';
 export 'profile_view_model.dart';
 
@@ -15,7 +14,7 @@ class ProfileViewWidget extends StatefulWidget {
   const ProfileViewWidget({super.key});
 
   @override
-  _ProfileViewWidgetState createState() => _ProfileViewWidgetState();
+  State<ProfileViewWidget> createState() => _ProfileViewWidgetState();
 }
 
 class _ProfileViewWidgetState extends State<ProfileViewWidget>
@@ -71,6 +70,8 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -82,15 +83,6 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -99,37 +91,26 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: const Color(0x00FFFFFF),
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            fillColor: const Color(0x00FFFFFF),
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: FlutterFlowTheme.of(context).info,
-              size: 20.0,
+          title: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+            child: GradientText(
+              FFLocalizations.of(context).getText(
+                '26hts0th' /* Profile */,
+              ),
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Urbanist',
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    letterSpacing: 0.0,
+                  ),
+              colors: [
+                FlutterFlowTheme.of(context).primary,
+                FlutterFlowTheme.of(context).secondary
+              ],
+              gradientDirection: GradientDirection.ltr,
+              gradientType: GradientType.linear,
             ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
-          title: GradientText(
-            FFLocalizations.of(context).getText(
-              '26hts0th' /* Profile */,
-            ),
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Urbanist',
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-            colors: [
-              FlutterFlowTheme.of(context).primary,
-              FlutterFlowTheme.of(context).secondary
-            ],
-            gradientDirection: GradientDirection.ltr,
-            gradientType: GradientType.linear,
           ),
           actions: const [],
           flexibleSpace: FlexibleSpaceBar(
@@ -138,7 +119,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               child: Image.network(
                 'https://images.unsplash.com/photo-1682688759350-050208b1211c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MXwxfHNlYXJjaHwxNXx8c2t5fGVufDB8fHx8MTcwMTI2NjM4NXww&ixlib=rb-4.0.3&q=80&w=1080',
                 fit: BoxFit.cover,
-                alignment: const Alignment(0.00, 0.40),
+                alignment: const Alignment(0.0, 0.4),
               ),
             ),
           ),
@@ -150,19 +131,41 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 0.0, 0.0),
               child: AuthUserStreamWidget(
                 builder: (context) => Text(
-                  currentUserDisplayName,
-                  style: FlutterFlowTheme.of(context).headlineLarge,
+                  valueOrDefault<String>(
+                    currentUserDisplayName,
+                    'Click \"Edit Profile\" and Complete Your Account!',
+                  ),
+                  style: FlutterFlowTheme.of(context).headlineLarge.override(
+                        fontFamily: 'Urbanist',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 5.0),
+              child: AuthUserStreamWidget(
+                builder: (context) => Text(
+                  valueOrDefault(currentUserDocument?.schoolName, ''),
+                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Plus Jakarta Sans',
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 16.0),
               child: Text(
                 currentUserEmail,
-                style: FlutterFlowTheme.of(context).labelMedium,
+                style: FlutterFlowTheme.of(context).labelMedium.override(
+                      fontFamily: 'Plus Jakarta Sans',
+                      letterSpacing: 0.0,
+                      fontStyle: FontStyle.italic,
+                    ),
               ),
             ),
             Padding(
@@ -171,7 +174,10 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                 FFLocalizations.of(context).getText(
                   '09y6mxfs' /* Your Account */,
                 ),
-                style: FlutterFlowTheme.of(context).labelMedium,
+                style: FlutterFlowTheme.of(context).labelMedium.override(
+                      fontFamily: 'Plus Jakarta Sans',
+                      letterSpacing: 0.0,
+                    ),
               ),
             ),
             Padding(
@@ -185,22 +191,24 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                     BoxShadow(
                       blurRadius: 4.0,
                       color: Color(0x33000000),
-                      offset: Offset(0.0, 2.0),
+                      offset: Offset(
+                        0.0,
+                        2.0,
+                      ),
                     )
                   ],
                   borderRadius: BorderRadius.circular(8.0),
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.pushNamed('profileEdit');
+                      context.pushNamed('editProf');
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -217,12 +225,17 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                             FFLocalizations.of(context).getText(
                               'xpa8k14a' /* Edit Profile */,
                             ),
-                            style: FlutterFlowTheme.of(context).labelLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -247,15 +260,17 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                     BoxShadow(
                       blurRadius: 3.0,
                       color: Color(0x33000000),
-                      offset: Offset(0.0, 1.0),
+                      offset: Offset(
+                        0.0,
+                        1.0,
+                      ),
                     )
                   ],
                   borderRadius: BorderRadius.circular(8.0),
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -279,12 +294,17 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                             FFLocalizations.of(context).getText(
                               '73uam1cl' /* Change Password */,
                             ),
-                            style: FlutterFlowTheme.of(context).labelLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -304,52 +324,43 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                 FFLocalizations.of(context).getText(
                   'jrqxqs8g' /* App Settings */,
                 ),
-                style: FlutterFlowTheme.of(context).labelMedium,
+                style: FlutterFlowTheme.of(context).labelMedium.override(
+                      fontFamily: 'Plus Jakarta Sans',
+                      letterSpacing: 0.0,
+                    ),
               ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-              child: Container(
-                width: double.infinity,
-                height: 60.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 3.0,
-                      color: Color(0x33000000),
-                      offset: Offset(0.0, 1.0),
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(8.0),
-                  shape: BoxShape.rectangle,
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('In Progress'),
-                            content: const Text('In Progress, Sorry.'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await launchURL(
+                      'https://docs.google.com/forms/d/e/1FAIpQLSf-NaiiTMAZBtNL2NBwzX3Gvg1BYSwROsjb2JIwYzaXCP4L7Q/viewform?usp=sf_link');
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 3.0,
+                        color: Color(0x33000000),
+                        offset: Offset(
+                          0.0,
+                          1.0,
+                        ),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(8.0),
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -365,12 +376,17 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                             FFLocalizations.of(context).getText(
                               'rikuvc5b' /* Support */,
                             ),
-                            style: FlutterFlowTheme.of(context).labelLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -395,15 +411,17 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                     BoxShadow(
                       blurRadius: 3.0,
                       color: Color(0x33000000),
-                      offset: Offset(0.0, 1.0),
+                      offset: Offset(
+                        0.0,
+                        1.0,
+                      ),
                     )
                   ],
                   borderRadius: BorderRadius.circular(8.0),
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -413,16 +431,18 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('In Progress'),
-                            content: const Text('In Progress, Sorry.'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: const Text('In Progress'),
+                              content: const Text('In Progress, Sorry.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -442,12 +462,17 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                             FFLocalizations.of(context).getText(
                               'owq2cgzj' /* Terms of Service */,
                             ),
-                            style: FlutterFlowTheme.of(context).labelLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                         Expanded(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.90, 0.00),
+                            alignment: const AlignmentDirectional(0.9, 0.0),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -483,8 +508,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                       ),
                     ),
                     child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -547,6 +571,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                   ? const Color(0xFF14181B)
                                                   : const Color(0xFF57636C),
                                               fontSize: 14.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -614,6 +639,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                   ? const Color(0xFF14181B)
                                                   : const Color(0xFF57636C),
                                               fontSize: 14.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -634,7 +660,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.00, 0.00),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: FFButtonWidget(
@@ -643,7 +669,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                     await authManager.signOut();
                     GoRouter.of(context).clearRedirectLocation();
 
-                    context.goNamedAuth('startPage', context.mounted);
+                    context.goNamedAuth('Auth1', context.mounted);
                   },
                   text: FFLocalizations.of(context).getText(
                     'nig2nxw7' /* Log Out */,
@@ -658,6 +684,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Plus Jakarta Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
+                          letterSpacing: 0.0,
                         ),
                     elevation: 0.0,
                     borderSide: BorderSide(

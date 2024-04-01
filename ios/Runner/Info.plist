@@ -21,6 +21,14 @@
 		<string>en</string>
 		<string>es</string>
 		<string>fr</string>
+		<string>am</string>
+		<string>zh_Hant</string>
+		<string>zh_Hans</string>
+		<string>ar</string>
+		<string>ru</string>
+		<string>ne</string>
+		<string>ja</string>
+		<string>vi</string>
 	</array>
 
 	<key>CFBundleShortVersionString</key>
@@ -34,7 +42,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.1004039114611-m2dg6lugval47eiokmunvs4hi7gq8g1j</string>
+                <string>com.googleusercontent.apps.1004039114611-omggsl68uvtb0vcv7n3mkga6qb2lj4fa</string>
                 
             </array>
         </dict>

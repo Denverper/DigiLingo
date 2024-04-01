@@ -35,8 +35,6 @@ class Auth1Model extends FlutterFlowModel<Auth1Widget> {
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)? passwordConfirmControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
@@ -62,8 +60,4 @@ class Auth1Model extends FlutterFlowModel<Auth1Widget> {
     passwordConfirmFocusNode?.dispose();
     passwordConfirmController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }
